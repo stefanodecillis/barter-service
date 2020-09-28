@@ -1,16 +1,9 @@
 # barter
 
-A new Flutter project.
+Exchange goods/ services 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is a starting point to to implement an image recognition api that would recognize the image of goods/services uploaded and store it in the database with relevant confidence level, and thus it can help to reduce the amount of description that is required to type physically by the owner of the application. This will thus in return help us to save time and make the app be more user friendly with less complexity. 
+ 
+The buyer looking out to buy some services, can login to the app and search for its desired service. If the service is found in the database of the application he/she can contact the owner using the chat window  in order to proceed with their transaction. 
