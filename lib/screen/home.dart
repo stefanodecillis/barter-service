@@ -1,10 +1,11 @@
-import 'package:barter/event/IntersectionEvent.dart';
+import 'package:barter/event/postEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
-import 'package:barter/logic/IntersectionLogic.dart';
-import 'package:barter/state/IntersectionState.dart';
+import 'package:barter/logic/postLogic.dart';
+import 'package:barter/screen/uploadScreen.dart';
+import 'package:barter/state/postState.dart';
 import 'package:barter/widget/barterDrawer.dart';
-import 'package:barter/widget/intersectionCard.dart';
-import 'package:barter/widget/intersectionFIlters.dart';
+import 'package:barter/widget/postCard.dart';
+import 'package:barter/widget/postFIlters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final IntersectionLogic logic = CoreLogic.instance.intersectionLogic;
+  final PostLogic logic = CoreLogic.instance.postLogic;
   TextEditingController _textEditingController = TextEditingController();
   bool searching = false;
 
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    logic.add(FetchIntersections());
+    logic.add(FetchPosts());
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 20, color: Colors.white))
               : Text('Barter'),
           actions: [
-            BlocBuilder<IntersectionLogic, IntersectionState>(
+            BlocBuilder<PostLogic, PostState>(
               cubit: logic,
               builder: (context, state) {
                 if (state.filtered) {
@@ -65,19 +66,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: BarterDrawer(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UploadScreen()),
+            );
+          },
           backgroundColor: Colors.red,
           child: Icon(Icons.add),
         ),
         body: SingleChildScrollView(
             child: Column(children: [
-          searching ? IntersectionFilters() : SizedBox(),
-          BlocBuilder<IntersectionLogic, IntersectionState>(
+          searching ? PostFilters() : SizedBox(),
+          BlocBuilder<PostLogic, PostState>(
             cubit: logic,
             builder: (context, state) {
-              var list = state.filtered
-                  ? state.filteredIntersections
-                  : state.intersections;
+              var list = state.filtered ? state.filteredPosts : state.posts;
               return ListView.builder(
                   shrinkWrap: true,
                   itemCount: list.length,
@@ -85,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(top: 10),
-                      child: IntersectionCard(
-                        intersection: list[index],
+                      child: PostCard(
+                        post: list[index],
                       ),
                     );
                   });

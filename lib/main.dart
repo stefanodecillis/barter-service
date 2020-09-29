@@ -1,4 +1,5 @@
 import 'package:barter/screen/home.dart';
+import 'package:barter/screen/userPostScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
