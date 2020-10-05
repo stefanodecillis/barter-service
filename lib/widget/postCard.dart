@@ -1,3 +1,4 @@
+import 'package:barter/constants.dart';
 import 'package:barter/entity/post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,7 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          color: secondBg, borderRadius: BorderRadius.all(Radius.circular(20))),
       width: double.maxFinite,
       child: Row(children: [
         SizedBox(

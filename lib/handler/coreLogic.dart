@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:barter/event/postEvent.dart';
 import 'package:barter/logic/postLogic.dart';
+import 'package:barter/logic/uploadProcessLogic.dart';
 
 class CoreLogic {
   static final CoreLogic _instance = CoreLogic._privateConstructor();
   // ignore: close_sinks
   PostLogic postLogic;
+  UploadProcessLogic uploadProcessLogic;
 
   static CoreLogic get instance => _instance;
 
@@ -13,6 +15,7 @@ class CoreLogic {
   CoreLogic._privateConstructor() {
     this.postLogic = PostLogic();
     postLogic.add(FetchPosts());
+    this.uploadProcessLogic = UploadProcessLogic();
     //_initTimers();  not perioic
   }
 

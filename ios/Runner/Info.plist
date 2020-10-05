@@ -41,5 +41,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera will be used to take picture of your object and nothing more</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We use your gallery to take only your object photos</string>
 </dict>
 </plist>

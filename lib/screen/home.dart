@@ -1,3 +1,4 @@
+import 'package:barter/constants.dart';
 import 'package:barter/event/postEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/logic/postLogic.dart';
@@ -29,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     logic.add(FetchPosts());
     return Scaffold(
+        backgroundColor: secondTheme,
         appBar: AppBar(
+          backgroundColor: mainTheme,
           centerTitle: true,
           title: searching
               ? TextField(
@@ -72,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialPageRoute(builder: (context) => UploadScreen()),
             );
           },
-          backgroundColor: Colors.red,
+          backgroundColor: mainTheme,
           child: Icon(Icons.add),
         ),
         body: SingleChildScrollView(
@@ -84,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
               var list = state.filtered ? state.filteredPosts : state.posts;
               return ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: list.length,
                   padding: EdgeInsets.all(10),
                   itemBuilder: (context, index) {

@@ -1,3 +1,4 @@
+import 'package:barter/constants.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/logic/postLogic.dart';
 import 'package:barter/state/postState.dart';
@@ -10,8 +11,10 @@ class UserPostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: secondTheme,
         appBar: AppBar(
-          title: Text("My List"),
+          backgroundColor: mainTheme,
+          title: Text("My Items"),
           centerTitle: true,
         ),
         body: BlocBuilder<PostLogic, PostState>(
