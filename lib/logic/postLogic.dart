@@ -34,6 +34,10 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       ss.filtered = false;
       ss.filteredPosts = [];
       yield ss;
+    } else if (event is AddPost) {
+      PostState ss = generateState(state);
+      ss.userPosts.add(event.post);
+      yield ss;
     }
   }
 

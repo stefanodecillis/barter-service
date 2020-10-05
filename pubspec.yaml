@@ -30,6 +30,7 @@ dependencies:
   flutter_bloc: ^6.0.5
   image_picker: ^0.6.7+11
   hexcolor: ^1.0.4
+  rflutter_alert: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,5 @@
+import 'package:barter/entity/post.dart';
+
 abstract class PostEvent {}
 
 class FetchPosts extends PostEvent {}
@@ -10,3 +12,8 @@ class FetchFilter extends PostEvent {
 }
 
 class RestoreResult extends PostEvent {}
+
+class AddPost extends PostEvent {
+  final Post post;
+  AddPost(this.post);
+}
