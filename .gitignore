@@ -45,3 +45,6 @@ app.*.map.json
 bloc_generator
 .vscode
 pubspec.lock
+
+# Docker exceptions
+mongo-data/*
