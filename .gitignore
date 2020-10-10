@@ -48,3 +48,5 @@ pubspec.lock
 
 # Docker exceptions
 mongo-data/*
+mongo-data/WiredTiger
+!mongo-data/.gitkeep
