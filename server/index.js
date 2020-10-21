@@ -75,6 +75,15 @@ async function addItemToUser(userid, item) {
   db.close();
 }
 
+async function findAllDocuments(collection){
+  const db = await mongo.MongoClient.connect(url);
+  var dbo = db.db(dbName);
+  var collection = dbo.collection(collection);
+  const objs = await collection.find({}).toArray();
+  db.close();
+  return objs;
+}
+
 mongo.MongoClient.connect(url, async function (err, client) {
   if (err) throw err;
   console.log("Connected successfully to mongodb");
@@ -119,6 +128,16 @@ app.post("/api/create/item", jsonParser, async (req, res) => {
     var item_id = await insertDB("items", item);
     addItemToUser(item.owner, item);
     res.sendStatus(200);
+  }
+});
+
+
+app.get("/api/items", jsonParser, async (req, res) => {
+  try{
+    const items = await findAllDocuments('items');
+  res.json(items);
+  } catch (e){
+    res.sendStatus(500);
   }
 });
 
