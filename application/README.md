@@ -10,8 +10,17 @@ The buyer looking out to buy some services, can login to the app and search for 
 
 # ToDo
 
-- merge chat and login
-- backend logic
-- carousel in item detail page
-- chats screen
-- loved items screen
+- carousel in item detail page    --- stefano
+- loved items screen -> backend   --- stefano
+- authentication and chat services beautification and to bloc paradigm  --- stefano
+- merge the UI flow from login to homepage  --- stefano
+- make login page without scrolling
+- API recognition with backend
+- images in backend
+- userid should be unique (for chats)
+
+
+
+# bonus
+
+- backend logic (to be finished)

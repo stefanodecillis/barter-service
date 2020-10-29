@@ -1,0 +1,369 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.barter"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="28" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:8:5-66
+14-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:8:22-64
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+15-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+16-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:24:5-79
+17-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:24:22-76
+18    <uses-permission android:name="android.permission.WAKE_LOCK" />
+18-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:25:5-68
+18-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:25:22-65
+19    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+19-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:26:5-110
+19-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:26:22-107
+20
+21    <application
+21-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:10:5-65:19
+22        android:name="io.flutter.app.FlutterApplication"
+22-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:11:9-57
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.1.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/44b1706abe044cd42dcac5be863451ed/core-1.1.0/AndroidManifest.xml:24:18-86
+24        android:debuggable="true"
+25        android:icon="@mipmap/ic_launcher"
+25-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:13:9-43
+26        android:label="barter"
+26-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:12:9-31
+27        android:supportsRtl="true" >
+27-->[com.facebook.android:facebook-android-sdk:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/d6163631f0be294b846533c7c67751f1/facebook-android-sdk-5.15.3/AndroidManifest.xml:28:18-44
+28        <activity
+28-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:14:9-42:20
+29            android:name="com.example.barter.MainActivity"
+29-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:15:13-41
+30            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+30-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:18:13-163
+31            android:hardwareAccelerated="true"
+31-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:19:13-47
+32            android:launchMode="singleTop"
+32-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:16:13-43
+33            android:theme="@style/LaunchTheme"
+33-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:17:13-47
+34            android:windowSoftInputMode="adjustResize" >
+34-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:20:13-55
+35
+36            <!--
+37                 Specifies an Android theme to apply to this Activity as soon as
+38                 the Android process has started. This theme is visible to the user
+39                 while the Flutter UI initializes. After that, this theme continues
+40                 to determine the Window background behind the Flutter UI.
+41            -->
+42            <meta-data
+42-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:25:13-28:17
+43                android:name="io.flutter.embedding.android.NormalTheme"
+43-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:26:15-70
+44                android:resource="@style/NormalTheme" />
+44-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:27:15-52
+45            <!--
+46                 Displays an Android View that continues showing the launch screen
+47                 Drawable until Flutter paints its first frame, then this splash
+48                 screen fades out. A splash screen is useful to avoid any visual
+49                 gap between the end of Android's launch screen and the painting of
+50                 Flutter's first frame.
+51            -->
+52            <meta-data
+52-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:34:13-37:17
+53                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+53-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:35:15-79
+54                android:resource="@drawable/launch_background" />
+54-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:36:15-61
+55
+56            <intent-filter>
+56-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:38:13-41:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:39:17-68
+57-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:39:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:40:17-76
+59-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:40:27-74
+60            </intent-filter>
+61        </activity>
+62
+63        <meta-data
+63-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:43:9-44:54
+64            android:name="com.facebook.sdk.ApplicationId"
+64-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:43:20-65
+65            android:value="@string/facebook_app_id" />
+65-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:44:13-52
+66
+67        <activity
+67-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:46:9-49:48
+68            android:name="com.facebook.FacebookActivity"
+68-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:46:19-63
+69            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+69-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:47:13-113
+70            android:label="@string/app_name"
+70-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:49:13-45
+71            android:theme="@style/com_facebook_activity_theme" />
+71-->[com.facebook.android:facebook-common:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/9e8b51294669f90df73fe8660b8649d3/jetified-facebook-common-5.15.3/AndroidManifest.xml:33:13-63
+72        <activity
+72-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:50:9-59:20
+73            android:name="com.facebook.CustomTabActivity"
+73-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:51:13-58
+74            android:exported="true" >
+74-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:52:13-36
+75            <intent-filter>
+75-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:53:13-58:29
+76                <action android:name="android.intent.action.VIEW" />
+76-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:54:17-69
+76-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:54:25-66
+77
+78                <category android:name="android.intent.category.DEFAULT" />
+78-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:55:17-76
+78-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:55:27-73
+79                <category android:name="android.intent.category.BROWSABLE" />
+79-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:56:17-78
+79-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:56:27-75
+80
+81                <data android:scheme="@string/fb_login_protocol_scheme" />
+81-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:57:17-75
+81-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:57:23-72
+82            </intent-filter>
+83            <intent-filter>
+83-->[com.facebook.android:facebook-common:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/9e8b51294669f90df73fe8660b8649d3/jetified-facebook-common-5.15.3/AndroidManifest.xml:39:13-48:29
+84                <action android:name="android.intent.action.VIEW" />
+84-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:54:17-69
+84-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:54:25-66
+85
+86                <category android:name="android.intent.category.DEFAULT" />
+86-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:55:17-76
+86-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:55:27-73
+87                <category android:name="android.intent.category.BROWSABLE" />
+87-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:56:17-78
+87-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:56:27-75
+88
+89                <data
+89-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:57:17-75
+90                    android:host="cct.com.example.barter"
+91                    android:scheme="fbconnect" />
+91-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:57:23-72
+92            </intent-filter>
+93        </activity>
+94        <!--
+95             Don't delete the meta-data below.
+96             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+97        -->
+98        <meta-data
+98-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:62:9-64:33
+99            android:name="flutterEmbedding"
+99-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:63:13-44
+100            android:value="2" />
+100-->/home/stefano/projects/barter-service/application/android/app/src/main/AndroidManifest.xml:64:13-30
+101
+102        <service
+102-->[:cloud_firestore] /home/stefano/projects/barter-service/application/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+103            android:name="com.google.firebase.components.ComponentDiscoveryService"
+103-->[:cloud_firestore] /home/stefano/projects/barter-service/application/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
+104            android:directBootAware="true"
+104-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+105            android:exported="false" >
+105-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:35:13-37
+106            <meta-data
+106-->[:cloud_firestore] /home/stefano/projects/barter-service/application/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+107                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
+107-->[:cloud_firestore] /home/stefano/projects/barter-service/application/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-133
+108                android:value="com.google.firebase.components.ComponentRegistrar" />
+108-->[:cloud_firestore] /home/stefano/projects/barter-service/application/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+109            <meta-data
+109-->[:firebase_auth] /home/stefano/projects/barter-service/application/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+110                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
+110-->[:firebase_auth] /home/stefano/projects/barter-service/application/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
+111                android:value="com.google.firebase.components.ComponentRegistrar" />
+111-->[:firebase_auth] /home/stefano/projects/barter-service/application/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+112            <meta-data
+112-->[:firebase_core] /home/stefano/projects/barter-service/application/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+113                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+113-->[:firebase_core] /home/stefano/projects/barter-service/application/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
+114                android:value="com.google.firebase.components.ComponentRegistrar" />
+114-->[:firebase_core] /home/stefano/projects/barter-service/application/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+115            <meta-data
+115-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:36:13-38:85
+116                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+116-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:37:17-109
+117                android:value="com.google.firebase.components.ComponentRegistrar" />
+117-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:38:17-82
+118            <meta-data
+118-->[com.google.android.gms:play-services-measurement-api:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/5f7c5718d7cb3730373f0aa27c29e627/play-services-measurement-api-17.5.0/AndroidManifest.xml:30:13-32:85
+119                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+119-->[com.google.android.gms:play-services-measurement-api:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/5f7c5718d7cb3730373f0aa27c29e627/play-services-measurement-api-17.5.0/AndroidManifest.xml:31:17-139
+120                android:value="com.google.firebase.components.ComponentRegistrar" />
+120-->[com.google.android.gms:play-services-measurement-api:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/5f7c5718d7cb3730373f0aa27c29e627/play-services-measurement-api-17.5.0/AndroidManifest.xml:32:17-82
+121            <meta-data
+121-->[com.google.firebase:firebase-firestore:21.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/3b60cb89174ff89eabfa561d6d59304e/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:20:13-22:85
+122                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+122-->[com.google.firebase:firebase-firestore:21.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/3b60cb89174ff89eabfa561d6d59304e/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:21:17-111
+123                android:value="com.google.firebase.components.ComponentRegistrar" />
+123-->[com.google.firebase:firebase-firestore:21.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/3b60cb89174ff89eabfa561d6d59304e/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:22:17-82
+124            <meta-data
+124-->[com.google.firebase:firebase-installations:16.3.2] /home/stefano/.gradle/caches/transforms-2/files-2.1/ff2efd0259911673380f14d147be15bb/firebase-installations-16.3.2/AndroidManifest.xml:17:13-19:85
+125                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+125-->[com.google.firebase:firebase-installations:16.3.2] /home/stefano/.gradle/caches/transforms-2/files-2.1/ff2efd0259911673380f14d147be15bb/firebase-installations-16.3.2/AndroidManifest.xml:18:17-127
+126                android:value="com.google.firebase.components.ComponentRegistrar" />
+126-->[com.google.firebase:firebase-installations:16.3.2] /home/stefano/.gradle/caches/transforms-2/files-2.1/ff2efd0259911673380f14d147be15bb/firebase-installations-16.3.2/AndroidManifest.xml:19:17-82
+127        </service>
+128
+129        <provider
+129-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+130            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+130-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+131            android:authorities="com.example.barter.flutter.image_provider"
+131-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+132            android:exported="false"
+132-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+133            android:grantUriPermissions="true" >
+133-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+134            <meta-data
+134-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
+135                android:name="android.support.FILE_PROVIDER_PATHS"
+135-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
+136                android:resource="@xml/flutter_image_picker_file_paths" />
+136-->[:image_picker] /home/stefano/projects/barter-service/application/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
+137        </provider>
+138
+139        <activity
+139-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:24:9-31:50
+140            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+140-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:25:13-85
+141            android:excludeFromRecents="true"
+141-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:26:13-46
+142            android:exported="true"
+142-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:27:13-36
+143            android:launchMode="singleTask"
+143-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:28:13-44
+144            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+144-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:29:13-102
+145            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+145-->[com.google.firebase:firebase-auth:19.2.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/b7283804060703fd5d21dc9df58ad68f/firebase-auth-19.2.0/AndroidManifest.xml:30:13-72
+146        <activity android:name="com.facebook.CustomTabMainActivity" />
+146-->[com.facebook.android:facebook-common:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/9e8b51294669f90df73fe8660b8649d3/jetified-facebook-common-5.15.3/AndroidManifest.xml:34:9-71
+146-->[com.facebook.android:facebook-common:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/9e8b51294669f90df73fe8660b8649d3/jetified-facebook-common-5.15.3/AndroidManifest.xml:34:19-68
+147
+148        <receiver
+148-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:29:9-33:20
+149            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+149-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:30:13-85
+150            android:enabled="true"
+150-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:31:13-35
+151            android:exported="false" >
+151-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:32:13-37
+152        </receiver>
+153
+154        <service
+154-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:35:9-38:40
+155            android:name="com.google.android.gms.measurement.AppMeasurementService"
+155-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:36:13-84
+156            android:enabled="true"
+156-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:37:13-35
+157            android:exported="false" />
+157-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:38:13-37
+158        <service
+158-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:39:9-43:72
+159            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+159-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:40:13-87
+160            android:enabled="true"
+160-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:41:13-35
+161            android:exported="false"
+161-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:42:13-37
+162            android:permission="android.permission.BIND_JOB_SERVICE" />
+162-->[com.google.android.gms:play-services-measurement:17.5.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1033b19d7e32f8d585488b5702e1e317/play-services-measurement-17.5.0/AndroidManifest.xml:43:13-69
+163
+164        <provider
+164-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+165            android:name="com.google.firebase.provider.FirebaseInitProvider"
+165-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+166            android:authorities="com.example.barter.firebaseinitprovider"
+166-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+167            android:exported="false"
+167-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+168            android:initOrder="100" />
+168-->[com.google.firebase:firebase-common:19.3.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/57137a2fef20642579ad4576f790af23/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+169
+170        <activity
+170-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:23:9-27:75
+171            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+171-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:24:13-93
+172            android:excludeFromRecents="true"
+172-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:25:13-46
+173            android:exported="false"
+173-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:26:13-37
+174            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+174-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:27:13-72
+175        <!--
+176            Service handling Google Sign-In user revocation. For apps that do not integrate with
+177            Google Sign-In, this service will never be started.
+178        -->
+179        <service
+179-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:33:9-36:110
+180            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+180-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:34:13-89
+181            android:exported="true"
+181-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:35:13-36
+182            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+182-->[com.google.android.gms:play-services-auth:16.0.1] /home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/AndroidManifest.xml:36:13-107
+183
+184        <activity
+184-->[com.google.android.gms:play-services-base:17.1.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/12b2a981af48a4d34665a895e1a50203/play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+185            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+185-->[com.google.android.gms:play-services-base:17.1.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/12b2a981af48a4d34665a895e1a50203/play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+186            android:exported="false"
+186-->[com.google.android.gms:play-services-base:17.1.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/12b2a981af48a4d34665a895e1a50203/play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+187            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+187-->[com.google.android.gms:play-services-base:17.1.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/12b2a981af48a4d34665a895e1a50203/play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+188
+189        <meta-data
+189-->[com.google.android.gms:play-services-basement:17.0.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1f9ae926a5bb92db212b4fe6e35616c3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+190            android:name="com.google.android.gms.version"
+190-->[com.google.android.gms:play-services-basement:17.0.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1f9ae926a5bb92db212b4fe6e35616c3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+191            android:value="@integer/google_play_services_version" />
+191-->[com.google.android.gms:play-services-basement:17.0.0] /home/stefano/.gradle/caches/transforms-2/files-2.1/1f9ae926a5bb92db212b4fe6e35616c3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+192        <!--
+193         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+194         with the application context. This config is merged in with the host app's manifest,
+195         but there can only be one provider with the same authority activated at any given
+196         point; so if the end user has two or more different apps that use Facebook SDK, only the
+197         first one will be able to use the provider. To work around this problem, we use the
+198         following placeholder in the authority to identify each host application as if it was
+199         a completely different provider.
+200        -->
+201        <provider
+201-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:39:9-42:40
+202            android:name="com.facebook.internal.FacebookInitProvider"
+202-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:40:13-70
+203            android:authorities="com.example.barter.FacebookInitProvider"
+203-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:41:13-72
+204            android:exported="false" />
+204-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:42:13-37
+205
+206        <receiver
+206-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:44:9-50:20
+207            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+207-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:45:13-86
+208            android:exported="false" >
+208-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:46:13-37
+209            <intent-filter>
+209-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:47:13-49:29
+210                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+210-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:48:17-95
+210-->[com.facebook.android:facebook-core:5.15.3] /home/stefano/.gradle/caches/transforms-2/files-2.1/39afb6bee4803b2b80948fbfeca61bbf/jetified-facebook-core-5.15.3/AndroidManifest.xml:48:25-92
+211            </intent-filter>
+212        </receiver>
+213    </application>
+214
+215</manifest>

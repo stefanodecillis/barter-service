@@ -1,5 +1,5 @@
 import 'package:barter/event/postEvent.dart';
-import 'package:barter/respository/postRepository.dart';
+import 'package:barter/repository/postRepository.dart';
 import 'package:barter/state/postState.dart';
 import 'package:barter/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
