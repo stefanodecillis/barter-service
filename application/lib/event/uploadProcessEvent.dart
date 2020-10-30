@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:barter/entity/post.dart';
+
 abstract class UploadProcessEvent {}
 
 class UploadPicture extends UploadProcessEvent {
@@ -8,8 +10,7 @@ class UploadPicture extends UploadProcessEvent {
 }
 
 class UploadPost extends UploadProcessEvent {
-  final String title;
-  final String description;
+  final Post post;
 
-  UploadPost({this.title, this.description});
+  UploadPost({this.post});
 }

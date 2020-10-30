@@ -19,14 +19,12 @@ class UploadProcessLogic extends Bloc<UploadProcessEvent, UploadProcessState> {
       yield ss;
     } else if (event is UploadPost) {
       UploadProcessState ss = generateState(state);
-      ss.title = event.title;
-      ss.description = event.description;
-      Post post = Post(
+      /*Post post = Post(
           title: ss.title,
           description: ss.description,
           imgUrl:
-              "https://i.pinimg.com/originals/10/b2/f6/10b2f6d95195994fca386842dae53bb2.png");
-      CoreLogic.instance.postLogic.add(AddPost(post));
+              "https://i.pinimg.com/originals/10/b2/f6/10b2f6d95195994fca386842dae53bb2.png");*/
+      CoreLogic.instance.postLogic.add(AddPost(event.post));
       yield ss;
     }
   }

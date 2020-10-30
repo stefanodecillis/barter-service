@@ -3,11 +3,19 @@ import 'package:barter/screen/authentication/signup.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {
+
+  Authenticate({this.onSignIn});
+  final VoidCallback onSignIn;
+
   @override
-  _AuthenticateState createState() => _AuthenticateState();
+  _AuthenticateState createState() => _AuthenticateState(onSignIn: onSignIn);
 }
 
 class _AuthenticateState extends State<Authenticate> {
+
+  _AuthenticateState({this.onSignIn});
+  final VoidCallback onSignIn;
+
   bool showSignIn = true;
 
   void toggleView() {
@@ -19,10 +27,10 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {
-      return SignIn();
+      return SignIn(onSignIn: onSignIn,);
     } else {
       //return SignUp(toggleView);
-      return SignUp();
+      return SignUp(onSignIn: onSignIn,);
     }
   }
 }

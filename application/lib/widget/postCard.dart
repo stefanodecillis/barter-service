@@ -22,11 +22,16 @@ class PostCard extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Image.network(
+            width: MediaQuery.of(context).size.width*0.4,
+            child: post.file == null? Image.network(
               post.imgUrl,
               height: 140,
               width: 140,
-            ),
+            ) : Image.file(
+          post.file,
+          height: 140,
+            width: 140,
+          ),
           ),
           Spacer(),
           Column(
@@ -37,9 +42,10 @@ class PostCard extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
-              Text(post.description),
+              Padding(padding: EdgeInsets.only(left:10, right: 10),
+              child: Container(width: MediaQuery.of(context).size.width*0.4, child: Text(post.description,textAlign: TextAlign.center,),),)
             ],
           ),
           Spacer()

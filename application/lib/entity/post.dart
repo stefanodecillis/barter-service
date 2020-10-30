@@ -1,9 +1,13 @@
+import 'dart:io';
+
 class Post {
   String title;
   String description;
   String imgUrl;
+  File file;
 
   Post({this.title, this.description, this.imgUrl});
+  Post.file({this.title,this.description,this.file});
 
   Post.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -17,5 +21,14 @@ class Post {
     data['description'] = this.description;
     data['imgUrl'] = this.imgUrl;
     return data;
+  }
+
+  bool insideList(List<Post> list){
+    for(Post element in list){
+      if(element.title == this.title && element.description == this.description){
+        return true;
+      }
+    }
+    return false;
   }
 }

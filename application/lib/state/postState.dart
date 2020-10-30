@@ -8,6 +8,7 @@ class PostState {
   List<Post> posts;
   List<Post> filteredPosts;
   List<Post> userPosts;
+  List<Post> preferPosts;
 
   factory PostState.initial() {
     return PostState._()
@@ -15,6 +16,7 @@ class PostState {
       ..filtering = false
       ..filtered = false
       ..filteredPosts = []
-      ..userPosts = [];
+      ..userPosts = []
+      ..preferPosts = [];
   }
 }

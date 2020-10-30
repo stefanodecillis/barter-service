@@ -13,13 +13,19 @@ import '../../constants.dart';
 class SignIn extends StatefulWidget {
   //final Function toggleView;
 
+  SignIn({this.onSignIn});
+  final VoidCallback onSignIn;
+
   //SignIn(this.toggleView);
-  SignIn();
   @override
-  _SignInState createState() => _SignInState();
+  _SignInState createState() => _SignInState(onSignIn: onSignIn);
 }
 
 class _SignInState extends State<SignIn> {
+
+  _SignInState({this.onSignIn});
+  final VoidCallback onSignIn;
+
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
   TextEditingController usernameEditingController =      new TextEditingController();
@@ -52,8 +58,7 @@ class _SignInState extends State<SignIn> {
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
 
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+          onSignIn();
         } else {
           setState(() {
             isLoading = false;
@@ -160,11 +165,7 @@ class _SignInState extends State<SignIn> {
                 userInfoSnapshot.documents[0].data["username"]);
             HelperFunctions.saveUserEmailSharedPreference(
                 userInfoSnapshot.documents[0].data["email"]);
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChatRoom(),
-                ));
+            onSignIn();
           }
         }),
         padding: EdgeInsets.all(15.0),
@@ -255,8 +256,7 @@ class _SignInState extends State<SignIn> {
                     HelperFunctions.saveUserEmailSharedPreference(
                         userInfoSnapshot.documents[0].data["email"]);
 
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => ChatRoom()));
+                    onSignIn();
                   }
                 }),
             AssetImage(
@@ -280,8 +280,7 @@ class _SignInState extends State<SignIn> {
                 HelperFunctions.saveUserEmailSharedPreference(
                     userInfoSnapshot.documents[0].data["email"]);
                 print("Hii");
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ChatRoom()));
+               onSignIn();
               }
             }),
             AssetImage(

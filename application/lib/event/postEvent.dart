@@ -17,3 +17,10 @@ class AddPost extends PostEvent {
   final Post post;
   AddPost(this.post);
 }
+
+class FetchPreferPosts extends PostEvent {}
+
+class LovePost extends PostEvent {
+  final Post post;
+  LovePost({this.post});
+}

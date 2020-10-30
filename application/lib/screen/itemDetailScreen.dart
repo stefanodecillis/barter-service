@@ -1,8 +1,13 @@
 import 'package:barter/constants.dart';
 import 'package:barter/entity/post.dart';
+import 'package:barter/event/postEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
+import 'package:barter/logic/postLogic.dart';
+import 'package:barter/state/postState.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemDetailScreen extends StatefulWidget {
   ItemDetailScreen(this.item);
@@ -15,7 +20,6 @@ class ItemDetailScreen extends StatefulWidget {
 class _ItemDetailScreen extends State<ItemDetailScreen> {
   _ItemDetailScreen(this.item);
   final Post item;
-  bool liked = false;
 
   @override
   void initState() {
@@ -37,19 +41,35 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
       backgroundColor: secondBg,
       body: Column(
         children: [
-          Image.network(item.imgUrl),
-          Text(item.title),
-          Text(item.description),
+          item.file == null? Image.network(item.imgUrl) : Image.file(item.file),
+          SizedBox(height: 20,),
+          Padding(
+            padding: EdgeInsets.only(left: 15, right:15),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(item.title, textAlign: TextAlign.left, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+            ),
+          ),
+          SizedBox(height: 15,),
+          Padding(
+            padding: EdgeInsets.only(left: 15, right:15),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(item.description, textAlign: TextAlign.left, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),),
+            ),
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('love it');
-          setState(() {
-            this.liked = !this.liked;
-          });
-        },
-        child: !this.liked ? Icon(EvaIcons.heartOutline) : Icon(EvaIcons.heart),
+      floatingActionButton: BlocBuilder<PostLogic,PostState>(
+        cubit: CoreLogic.instance.postLogic,
+        builder: (context, state){
+          return FloatingActionButton(
+              onPressed: () {
+            debugPrint('love it');
+            CoreLogic.instance.postLogic.add(LovePost(post: this.item));
+          },
+          child: !state.preferPosts.contains(item)? Icon(EvaIcons.heartOutline) : Icon(EvaIcons.heart));
+        }
       ),
     );
   }

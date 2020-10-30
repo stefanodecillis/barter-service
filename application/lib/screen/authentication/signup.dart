@@ -13,12 +13,18 @@ import '../../constants.dart';
 class SignUp extends StatefulWidget {
   //final Function toggleView;
   //SignUp(this.toggleView);
-  SignUp();
+  SignUp({this.onSignIn});
+  final VoidCallback onSignIn;
+
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUpState createState() => _SignUpState(onSignIn: onSignIn);
 }
 
 class _SignUpState extends State<SignUp> {
+
+  _SignUpState({this.onSignIn});
+  final VoidCallback onSignIn;
+
   String email;
   String password;
   String userName;
@@ -55,9 +61,7 @@ class _SignUpState extends State<SignUp> {
               HelperFunctions.saveUserNameSharedPreference(usernameEditingController.text);
               HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
 
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => ChatRoom()
-              ));
+              onSignIn();
             }
       });
     }
@@ -190,11 +194,7 @@ class _SignUpState extends State<SignUp> {
         elevation: 5.0,
         onPressed: () =>signUp(email.trim(), password, userName,context).then((value) {
           if (value != null) {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChatRoom(),
-                ));
+            onSignIn();
           }
         }),
         padding: EdgeInsets.all(15.0),
@@ -275,8 +275,7 @@ class _SignUpState extends State<SignUp> {
 
                   if(value != null){
 
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => ChatRoom()));
+                    onSignIn();
                   }
                 }),
             AssetImage(
@@ -293,8 +292,7 @@ class _SignUpState extends State<SignUp> {
 
                   if(value != null){
 
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => ChatRoom()));
+                    onSignIn();
                   }
                 }),
             AssetImage(

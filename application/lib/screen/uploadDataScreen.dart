@@ -1,4 +1,5 @@
 import 'package:barter/constants.dart';
+import 'package:barter/entity/post.dart';
 import 'package:barter/event/uploadProcessEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/logic/uploadProcessLogic.dart';
@@ -30,10 +31,10 @@ class UploadDataScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Container(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
+                    padding: EdgeInsets.only( bottom: 10),
                     child: Image.file(
                       state.image,
-                      height: 200,
+                      //height: 200,
                     ),
                   ),
                 ),
@@ -68,9 +69,9 @@ class UploadDataScreen extends StatelessWidget {
                         return;
                       }
                       onSuccess(context);
-                      CoreLogic.instance.uploadProcessLogic.add(UploadPost(
-                          title: _titleController.text,
-                          description: _descriptionController.text));
+                      CoreLogic.instance.uploadProcessLogic.add(UploadPost(post: Post.file(title: _titleController.text,
+                          description: _descriptionController.text, file: state.image)),
+                      );
                     },
                     color: mainTheme,
                     textColor: Colors.white,

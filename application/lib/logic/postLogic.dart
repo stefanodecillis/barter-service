@@ -38,8 +38,17 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       PostState ss = generateState(state);
       ss.userPosts.add(event.post);
       yield ss;
+    } else if (event is LovePost){
+      PostState ss = generateState(state);
+      if(event.post.insideList(ss.preferPosts)){
+        ss.preferPosts.remove(event.post);
+      } else {
+        ss.preferPosts.add(event.post);
+      }
+      yield ss;
     }
   }
+  
 
   PostState generateState(PostState state) {
     PostState ss = PostState.initial();
@@ -48,6 +57,7 @@ class PostLogic extends Bloc<PostEvent, PostState> {
     ss.filtered = state.filtered;
     ss.filteredPosts = state.filteredPosts;
     ss.userPosts = state.userPosts;
+    ss.preferPosts = state.preferPosts;
     return ss;
   }
 }

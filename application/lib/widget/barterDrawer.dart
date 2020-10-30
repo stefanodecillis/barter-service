@@ -1,3 +1,4 @@
+import 'package:barter/screen/preferPostScreen.dart';
 import 'package:barter/screen/userPostScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,17 @@ class BarterDrawer extends StatelessWidget {
               },
               child: ListTile(
                 title: Text('My items'),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PreferPostScreen()),
+                );
+              },
+              child: ListTile(
+                title: Text('Love items'),
               ),
             ),
             ListTile(
