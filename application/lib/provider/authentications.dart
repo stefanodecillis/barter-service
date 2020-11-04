@@ -56,12 +56,12 @@ Future<bool> SignInFacebook() async {
   if (result.status == FacebookLoginStatus.loggedIn) {
     HelperFunctions.saveUserLoggedInSharedPreference(true);
     HelperFunctions.saveUserNameSharedPreference(profile['name'].toString());
-    HelperFunctions.saveUserEmailSharedPreference(profile['email'].toString().replaceAll('\u0040', '@'));
+    HelperFunctions.saveUserEmailSharedPreference(
+        profile['email'].toString().replaceAll('\u0040', '@'));
     final credential = FacebookAuthProvider.getCredential(accessToken: token);
     _auth.signInWithCredential(credential);
     return Future.value(true);
-  }
-  else{
+  } else {
     return Future.value(null);
   }
 }
@@ -81,13 +81,12 @@ Future<String> googleSignIn() async {
 
     FirebaseUser user = await auth.currentUser();
     print(user.uid);
-    if(result != null) {
+    if (result != null) {
       HelperFunctions.saveUserLoggedInSharedPreference(true);
       HelperFunctions.saveUserNameSharedPreference(user.displayName);
       HelperFunctions.saveUserEmailSharedPreference(user.email);
       return Future.value(user.email);
-    }
-    else{
+    } else {
       return Future.value(null);
     }
   }
@@ -138,24 +137,20 @@ Future<FirebaseUser> signin(
 }
 
 // change to Future<FirebaseUser> for returning a user
-Future<FirebaseUser> signUp(
-    String email, String password, String userName,BuildContext context) async {
+Future<FirebaseUser> signUp(String email, String password, String userName,
+    BuildContext context) async {
   try {
     DatabaseMethods databaseMethods = new DatabaseMethods();
     AuthResult result = await auth.createUserWithEmailAndPassword(
         email: email, password: email);
     FirebaseUser user = result.user;
-    if(result != null){
-      Map<String,String> userDataMap = {
-        "username" : userName,
-        "email" : email
-      };
+    if (result != null) {
+      Map<String, String> userDataMap = {"username": userName, "email": email};
       databaseMethods.addUserInfo(userDataMap);
 
       HelperFunctions.saveUserLoggedInSharedPreference(true);
       HelperFunctions.saveUserNameSharedPreference(userName);
       HelperFunctions.saveUserEmailSharedPreference(email);
-
     }
 
     return Future.value(user);
@@ -175,6 +170,7 @@ Future<FirebaseUser> signUp(
     return Future.value(null);
   }
 }
+
 Future<bool> SignUpFacebook() async {
 //    2407536649-ZFNGnaMhK7tCHBYL4rQ2SGT9nkuTbnL8g3aJCxq acc token
 //    Niz5D73o0BaUMZU4GHHGCTSpJmIoxmoPIITPeuOH46SMO acc token secret
@@ -190,18 +186,18 @@ Future<bool> SignUpFacebook() async {
   if (result.status == FacebookLoginStatus.loggedIn) {
     final credential = FacebookAuthProvider.getCredential(accessToken: token);
     _auth.signInWithCredential(credential);
-    Map<String,String> userDataMap = {
-      "username" : profile['name'].toString(),
-      "email" : profile['email'].toString().replaceAll('\u0040', '@')
+    Map<String, String> userDataMap = {
+      "username": profile['name'].toString(),
+      "email": profile['email'].toString().replaceAll('\u0040', '@')
     };
     databaseMethods.addUserInfo(userDataMap);
 
     HelperFunctions.saveUserLoggedInSharedPreference(true);
     HelperFunctions.saveUserNameSharedPreference(profile['name'].toString());
-    HelperFunctions.saveUserEmailSharedPreference(profile['email'].toString().replaceAll('\u0040', '@'));
+    HelperFunctions.saveUserEmailSharedPreference(
+        profile['email'].toString().replaceAll('\u0040', '@'));
     return Future.value(true);
-  }
-  else{
+  } else {
     return Future.value(null);
   }
 }
@@ -211,7 +207,7 @@ Future<bool> googleSignUp() async {
   DatabaseMethods databaseMethods = new DatabaseMethods();
   if (googleSignInAccount != null) {
     GoogleSignInAuthentication googleSignInAuthentication =
-    await googleSignInAccount.authentication;
+        await googleSignInAccount.authentication;
 
     AuthCredential credential = GoogleAuthProvider.getCredential(
         idToken: googleSignInAuthentication.idToken,
@@ -221,11 +217,10 @@ Future<bool> googleSignUp() async {
 
     FirebaseUser user = await auth.currentUser();
 
-
-    if(result != null){
-      Map<String,String> userDataMap = {
-        "username" : user.displayName,
-        "email" : user.email
+    if (result != null) {
+      Map<String, String> userDataMap = {
+        "username": user.displayName,
+        "email": user.email
       };
       databaseMethods.addUserInfo(userDataMap);
 
@@ -233,11 +228,9 @@ Future<bool> googleSignUp() async {
       HelperFunctions.saveUserNameSharedPreference(user.displayName);
       HelperFunctions.saveUserEmailSharedPreference(user.email);
       return Future.value(true);
-    }
-    else{
+    } else {
       return Future.value(null);
     }
-
   }
 }
 
@@ -248,6 +241,6 @@ Future signOutUser() async {
     await gooleSignIn.disconnect();
   }
   await auth.signOut();
+  HelperFunctions.clearData();
   return Future.value(true);
-
 }

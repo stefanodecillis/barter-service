@@ -41,36 +41,51 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
       backgroundColor: secondBg,
       body: Column(
         children: [
-          item.file == null? Image.network(item.imgUrl) : Image.file(item.file),
-          SizedBox(height: 20,),
+          item.file == null
+              ? Image.network(item.imgUrl)
+              : Image.file(item.file),
+          SizedBox(
+            height: 20,
+          ),
           Padding(
-            padding: EdgeInsets.only(left: 15, right:15),
+            padding: EdgeInsets.only(left: 15, right: 15),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(item.title, textAlign: TextAlign.left, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+              child: Text(
+                item.title,
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Padding(
-            padding: EdgeInsets.only(left: 15, right:15),
+            padding: EdgeInsets.only(left: 15, right: 15),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(item.description, textAlign: TextAlign.left, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),),
+              child: Text(
+                item.description,
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+              ),
             ),
           ),
         ],
       ),
-      floatingActionButton: BlocBuilder<PostLogic,PostState>(
-        cubit: CoreLogic.instance.postLogic,
-        builder: (context, state){
-          return FloatingActionButton(
-              onPressed: () {
-            debugPrint('love it');
-            CoreLogic.instance.postLogic.add(LovePost(post: this.item));
-          },
-          child: !state.preferPosts.contains(item)? Icon(EvaIcons.heartOutline) : Icon(EvaIcons.heart));
-        }
-      ),
+      floatingActionButton: BlocBuilder<PostLogic, PostState>(
+          cubit: CoreLogic.instance.postLogic,
+          builder: (context, state) {
+            return FloatingActionButton(
+                onPressed: () {
+                  debugPrint('love it');
+                  CoreLogic.instance.postLogic.add(LovePost(post: this.item));
+                },
+                child: !item.insideList(state.preferPosts)
+                    ? Icon(EvaIcons.heartOutline)
+                    : Icon(EvaIcons.heart));
+          }),
     );
   }
 

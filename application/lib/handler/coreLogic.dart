@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:barter/event/postEvent.dart';
+import 'package:barter/logic/authenticationLogic.dart';
 import 'package:barter/logic/postLogic.dart';
 import 'package:barter/logic/uploadProcessLogic.dart';
 
@@ -8,6 +9,7 @@ class CoreLogic {
   // ignore: close_sinks
   PostLogic postLogic;
   UploadProcessLogic uploadProcessLogic;
+  AuthenticationLogic authenticationLogic;
 
   static CoreLogic get instance => _instance;
 
@@ -16,6 +18,7 @@ class CoreLogic {
     this.postLogic = PostLogic();
     postLogic.add(FetchPosts());
     this.uploadProcessLogic = UploadProcessLogic();
+    this.authenticationLogic = AuthenticationLogic();
     //_initTimers();  not perioic
   }
 

@@ -12,6 +12,8 @@ The buyer looking out to buy some services, can login to the app and search for 
 
 - carousel in item detail page    --- stefano
 - authentication and chat services beautification and to bloc paradigm  --- stefano
+- check text during signup and login (trim)
+- add loading animation
 - make login page without scrolling
 - API recognition with backend
 - userid should be unique (for chats)

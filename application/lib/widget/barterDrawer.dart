@@ -1,3 +1,6 @@
+import 'package:barter/event/AuthenticationEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
+import 'package:barter/screen/chat/chatrooms.dart';
 import 'package:barter/screen/preferPostScreen.dart';
 import 'package:barter/screen/userPostScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,9 +50,25 @@ class BarterDrawer extends StatelessWidget {
                 title: Text('Love items'),
               ),
             ),
-            ListTile(
-              title: Text('Logout'),
-            )
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatRoom()),
+                );
+              },
+              child: ListTile(
+                title: Text('test'),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                CoreLogic.instance.authenticationLogic.add(Logout());
+              },
+              child: ListTile(
+                title: Text('Logout'),
+              ),
+            ),
           ],
         ),
       ),

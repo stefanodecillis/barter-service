@@ -22,13 +22,12 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
   _SignInState({this.onSignIn});
   final VoidCallback onSignIn;
 
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
-  TextEditingController usernameEditingController =      new TextEditingController();
+  TextEditingController usernameEditingController = new TextEditingController();
   String email;
   String password;
   bool _rememberMe = false;
@@ -48,7 +47,7 @@ class _SignInState extends State<SignIn> {
           .signInWithEmailAndPassword(
               emailEditingController.text, passwordEditingController.text)
           .then((result) async {
-        if (result != null)  {
+        if (result != null) {
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(emailEditingController.text);
 
@@ -120,7 +119,6 @@ class _SignInState extends State<SignIn> {
         Container(
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
-
           height: 60.0,
           child: TextField(
             controller: passwordEditingController,
@@ -141,7 +139,6 @@ class _SignInState extends State<SignIn> {
               ),
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
-
             ),
           ),
         ),
@@ -155,10 +152,10 @@ class _SignInState extends State<SignIn> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () =>signin(email, password, context).then((value) async{
+        onPressed: () => signin(email, password, context).then((value) async {
           if (value != null) {
-            QuerySnapshot userInfoSnapshot =
-                await DatabaseMethods().getUserInfo(emailEditingController.text);
+            QuerySnapshot userInfoSnapshot = await DatabaseMethods()
+                .getUserInfo(emailEditingController.text);
 
             HelperFunctions.saveUserLoggedInSharedPreference(true);
             HelperFunctions.saveUserNameSharedPreference(
@@ -241,38 +238,40 @@ class _SignInState extends State<SignIn> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildSocialBtn(
-                () => /*SignInFacebook().whenComplete(() async {
+            () =>
+                /*SignInFacebook().whenComplete(() async {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ChatRoom()));
-            })*/SignInFacebook().then((value) async {
+            })*/
+                SignInFacebook().then((value) async {
+              if (value != null) {
+                QuerySnapshot userInfoSnapshot = await DatabaseMethods()
+                    .getUserInfo(emailEditingController.text);
 
-                  if(value != null){
-                    QuerySnapshot userInfoSnapshot =
-                    await DatabaseMethods().getUserInfo(emailEditingController.text);
+                HelperFunctions.saveUserLoggedInSharedPreference(true);
+                HelperFunctions.saveUserNameSharedPreference(
+                    userInfoSnapshot.documents[0].data["username"]);
+                HelperFunctions.saveUserEmailSharedPreference(
+                    userInfoSnapshot.documents[0].data["email"]);
 
-                    HelperFunctions.saveUserLoggedInSharedPreference(true);
-                    HelperFunctions.saveUserNameSharedPreference(
-                        userInfoSnapshot.documents[0].data["username"]);
-                    HelperFunctions.saveUserEmailSharedPreference(
-                        userInfoSnapshot.documents[0].data["email"]);
-
-                    onSignIn();
-                  }
-                }),
+                onSignIn();
+              }
+            }),
             AssetImage(
               'assets/logos/facebook.jpg',
             ),
           ),
           _buildSocialBtn(
-                () => /*googleSignIn().whenComplete(() async {
+            () =>
+                /*googleSignIn().whenComplete(() async {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ChatRoom()));
             })*/
-            googleSignIn().then((value) async {
+                googleSignIn().then((value) async {
               print("Hello");
-              if(value != null){
+              if (value != null) {
                 QuerySnapshot userInfoSnapshot =
-                await DatabaseMethods().getUserInfo(value);
+                    await DatabaseMethods().getUserInfo(value);
                 print(value);
                 HelperFunctions.saveUserLoggedInSharedPreference(true);
                 HelperFunctions.saveUserNameSharedPreference(
@@ -280,7 +279,7 @@ class _SignInState extends State<SignIn> {
                 HelperFunctions.saveUserEmailSharedPreference(
                     userInfoSnapshot.documents[0].data["email"]);
                 print("Hii");
-               onSignIn();
+                onSignIn();
               }
             }),
             AssetImage(
@@ -296,9 +295,9 @@ class _SignInState extends State<SignIn> {
     return GestureDetector(
       onTap: () {
         // send to login screen
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => SignUp()));
-      },//=> print('Sign Up Button Pressed'),
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => SignUp()));
+      }, //=> print('Sign Up Button Pressed'),
       child: RichText(
         text: TextSpan(
           children: [
@@ -323,6 +322,7 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
+
   Widget _buildForgotPasswordBtn() {
     return Container(
       alignment: Alignment.centerRight,
@@ -363,76 +363,246 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: formKey,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFB2DFDB),
-                      Color(0xFF80CBC4),
-                      Color(0xFF4DB6AC),
-                      Color(0xFF26A69A),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
+        body: Stack(
+      children: [
+        Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [secondTheme, Colors.red]))),
+        SafeArea(
+          child: Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
                   ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
+                  Image(
+                    image: AssetImage(
+                      'assets/logos/Accounting.png',
+                    ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      /*Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),*/
-                      Image( image: AssetImage(
-                        'assets/logos/Accounting.png',
-                      ),),
-                      SizedBox(height: 30.0),
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 30.0,
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: secondBg,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: TextField(
+                      controller: emailEditingController,
+                      keyboardType: TextInputType.emailAddress,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'OpenSans',
                       ),
-                      _buildPasswordTF(),
-                      //_buildForgotPasswordBtn(),
-                      //_buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
-                    ],
+                      onChanged: (val) {
+                        email = val;
+                      },
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(top: 14.0),
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: secondTheme,
+                        ),
+                        hintText: 'Enter your Email',
+                      ),
+                    ),
                   ),
-                ),
-              )
-            ],
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: secondBg,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: TextField(
+                      controller: passwordEditingController,
+                      obscureText: true,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'OpenSans',
+                      ),
+                      onChanged: (val) {
+                        password = val;
+                      },
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(top: 14.0),
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: secondTheme,
+                        ),
+                        hintText: 'Enter your Password',
+                        hintStyle: kHintTextStyle,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: RaisedButton(
+                        onPressed: () => signin(email, password, context)
+                                .then((value) async {
+                              if (value != null) {
+                                QuerySnapshot userInfoSnapshot =
+                                    await DatabaseMethods().getUserInfo(
+                                        emailEditingController.text);
+                                HelperFunctions
+                                    .saveUserLoggedInSharedPreference(true);
+                                HelperFunctions.saveUserNameSharedPreference(
+                                    userInfoSnapshot
+                                        .documents[0].data["username"]);
+                                HelperFunctions.saveUserEmailSharedPreference(
+                                    userInfoSnapshot
+                                        .documents[0].data["email"]);
+                                onSignIn();
+                              }
+                            }),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        disabledColor: secondBg,
+                        child: Text(
+                          "LOGIN",
+                          style: TextStyle(color: secondTheme, fontSize: 21),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: RaisedButton(
+                        onPressed: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => SignUp()))
+                            },
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        disabledColor: secondBg,
+                        child: Text(
+                          "Signup",
+                          style: TextStyle(color: secondTheme, fontSize: 19),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: RaisedButton(
+                        onPressed: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => SignUp()))
+                            },
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        disabledColor: secondBg,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/logos/google.jpg',
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Sign in with Google",
+                              style:
+                                  TextStyle(color: secondTheme, fontSize: 19),
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: RaisedButton(
+                        onPressed: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => SignUp()))
+                            },
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        disabledColor: secondBg,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/logos/facebook.jpg',
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "Sign in with Facebook",
+                              style:
+                                  TextStyle(color: secondTheme, fontSize: 19),
+                            ),
+                          ],
+                        )),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+      ],
+    ));
+  }
+}
+
+class ClassicBtn extends StatelessWidget {
+  final Function onPress;
+  final String title;
+  ClassicBtn({this.onPress, this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: RaisedButton(
+          onPressed: onPress(),
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          disabledColor: secondBg,
+          child: Text(
+            this.title,
+            style: TextStyle(color: secondTheme, fontSize: 21),
+          )),
     );
   }
 }
