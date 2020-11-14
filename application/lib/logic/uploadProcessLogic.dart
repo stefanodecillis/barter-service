@@ -4,6 +4,7 @@ import 'package:barter/event/uploadProcessEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/provider/imageRecognitionProvider.dart';
 import 'package:barter/state/uploadProcessState.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UploadProcessLogic extends Bloc<UploadProcessEvent, UploadProcessState> {
@@ -17,9 +18,11 @@ class UploadProcessLogic extends Bloc<UploadProcessEvent, UploadProcessState> {
     if (event is UploadPicture) {
       UploadProcessState ss = generateState(state);
       ss.image = event.image;
-
       yield ss;
-      await ImageRecognitionProvider().imageRecognition(ss.image);
+      UploadProcessState sx = generateState(ss);
+      sx.imageRecognitionResult = await ImageRecognitionProvider().imageRecognition(event.image);
+      debugPrint(sx.imageRecognitionResult.toJson().toString());
+      yield sx;
     } else if (event is UploadPost) {
       UploadProcessState ss = generateState(state);
       /*Post post = Post(
@@ -35,6 +38,7 @@ class UploadProcessLogic extends Bloc<UploadProcessEvent, UploadProcessState> {
   UploadProcessState generateState(UploadProcessState state) {
     UploadProcessState ss = UploadProcessState.initial();
     ss.image = state.image;
+    ss.imageRecognitionResult = state.imageRecognitionResult;
     return ss;
   }
 }

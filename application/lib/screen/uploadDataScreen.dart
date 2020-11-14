@@ -26,6 +26,8 @@ class UploadDataScreen extends StatelessWidget {
           _titleController.text = "";
           _descriptionController.text = "";
 
+          String hints = state.imageRecognitionResult==null?null:state.imageRecognitionResult.providedResults();
+
           return SingleChildScrollView(
             child: Column(
               children: [
@@ -44,6 +46,7 @@ class UploadDataScreen extends StatelessWidget {
                 Center(
                     child: TitleInput(
                   controller: _titleController,
+                      hint: hints,
                 )),
                 SizedBox(
                   height: 30,
@@ -137,7 +140,8 @@ class UploadDataScreen extends StatelessWidget {
 }
 
 class TitleInput extends StatelessWidget {
-  TitleInput({this.controller});
+  TitleInput({this.controller, this.hint});
+  final String hint;
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
@@ -167,7 +171,7 @@ class TitleInput extends StatelessWidget {
             controller: controller,
             style: TextStyle(fontSize: 20),
             decoration: InputDecoration(
-                hintText: "Name of the object",
+                hintText: hint==null?"Name of the object": hint,
                 contentPadding: EdgeInsets.only(left: 20)),
           ),
         ),
