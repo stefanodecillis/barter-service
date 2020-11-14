@@ -1,4 +1,6 @@
 import 'package:barter/constants.dart';
+import 'package:barter/event/AuthenticationEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/handler/helperfunctions.dart';
 import 'package:barter/provider/authentications.dart';
 import 'package:barter/provider/database.dart';
@@ -72,7 +74,7 @@ class _ChatRoomState extends State<ChatRoom> {
           GestureDetector(
             onTap: () {
               //AuthService().signOut();
-              signOutUser();
+              CoreLogic.instance.authenticationLogic.add(Logout());
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => Authenticate()));
             },

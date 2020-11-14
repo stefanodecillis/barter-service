@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 abstract class AuthenticationEvent {}
 
 class Login extends AuthenticationEvent {
@@ -10,7 +12,26 @@ class Signup extends AuthenticationEvent {
   final String email;
   final String psw;
   final String username;
-  Signup({this.email, this.psw, this.username});
+  final BuildContext context;
+  Signup({this.email, this.psw, this.username, this.context});
+}
+
+class Signin extends AuthenticationEvent {
+  final String email;
+  final String psw;
+  final BuildContext context;
+  Signin({this.email, this.psw, this.context});
 }
 
 class Logout extends AuthenticationEvent {}
+
+class FacebookSignIn extends AuthenticationEvent {
+  final String email;
+  FacebookSignIn({this.email});
+}
+
+class GoogleSignIn extends AuthenticationEvent {}
+
+class GoogleSignUp extends AuthenticationEvent {}
+
+class FacebookSignUp extends AuthenticationEvent {}

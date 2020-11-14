@@ -1,3 +1,5 @@
+import 'package:barter/event/AuthenticationEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/handler/helperfunctions.dart';
 import 'package:barter/provider/auth.dart';
 import 'package:barter/provider/authentications.dart';
@@ -192,11 +194,7 @@ class _SignUpState extends State<SignUp> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () =>signUp(email.trim(), password, userName,context).then((value) {
-          if (value != null) {
-            onSignIn();
-          }
-        }),
+        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signup(email:email.trim(), psw:password, username:userName, context:context)),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -271,13 +269,7 @@ class _SignUpState extends State<SignUp> {
 
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => ChatRoom()));
-                })*/SignUpFacebook().then((value) async {
-
-                  if(value != null){
-
-                    onSignIn();
-                  }
-                }),
+                })*/CoreLogic.instance.authenticationLogic.add(FacebookSignUp()),
             AssetImage(
               'assets/logos/facebook.jpg',
             ),
@@ -288,13 +280,7 @@ class _SignUpState extends State<SignUp> {
 
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ChatRoom()));
-            })*/googleSignUp().then((value) async {
-
-                  if(value != null){
-
-                    onSignIn();
-                  }
-                }),
+            })*/CoreLogic.instance.authenticationLogic.add(GoogleSignUp()),
             AssetImage(
               'assets/logos/google.jpg',
             ),

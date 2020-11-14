@@ -1,12 +1,13 @@
 import 'dart:io';
 
 class Post {
+  int id;
   String title;
   String description;
   String imgUrl;
-  File file;
+  File file;     // user1_user2_itemid
 
-  Post({this.title, this.description, this.imgUrl});
+  Post({this.id,this.title, this.description, this.imgUrl});
   Post.file({this.title,this.description,this.file});
 
   Post.fromJson(Map<String, dynamic> json) {

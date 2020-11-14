@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+
+///access tokens
+final String apiKey = "acc_6941c2855e44a64";
+final String apiSecret = "2edb128375d04f1086a64d9d9a034909";
+///
+
 final mainTheme = Hexcolor('#EA5455');
 final secondTheme = Hexcolor("#2d4059");
 final mainBg = Hexcolor('#decdc3');

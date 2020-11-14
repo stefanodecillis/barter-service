@@ -2,6 +2,7 @@ import 'package:barter/entity/post.dart';
 import 'package:barter/event/postEvent.dart';
 import 'package:barter/event/uploadProcessEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
+import 'package:barter/provider/imageRecognitionProvider.dart';
 import 'package:barter/state/uploadProcessState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,9 @@ class UploadProcessLogic extends Bloc<UploadProcessEvent, UploadProcessState> {
     if (event is UploadPicture) {
       UploadProcessState ss = generateState(state);
       ss.image = event.image;
+
       yield ss;
+      await ImageRecognitionProvider().imageRecognition(ss.image);
     } else if (event is UploadPost) {
       UploadProcessState ss = generateState(state);
       /*Post post = Post(

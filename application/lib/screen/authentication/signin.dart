@@ -1,3 +1,5 @@
+import 'package:barter/event/AuthenticationEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/handler/helperfunctions.dart';
 import 'package:barter/provider/auth.dart';
 import 'package:barter/provider/authentications.dart';
@@ -152,19 +154,7 @@ class _SignInState extends State<SignIn> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => signin(email, password, context).then((value) async {
-          if (value != null) {
-            QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-                .getUserInfo(emailEditingController.text);
-
-            HelperFunctions.saveUserLoggedInSharedPreference(true);
-            HelperFunctions.saveUserNameSharedPreference(
-                userInfoSnapshot.documents[0].data["username"]);
-            HelperFunctions.saveUserEmailSharedPreference(
-                userInfoSnapshot.documents[0].data["email"]);
-            onSignIn();
-          }
-        }),
+        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email, psw:password, context:context)),
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -243,20 +233,7 @@ class _SignInState extends State<SignIn> {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ChatRoom()));
             })*/
-                SignInFacebook().then((value) async {
-              if (value != null) {
-                QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-                    .getUserInfo(emailEditingController.text);
-
-                HelperFunctions.saveUserLoggedInSharedPreference(true);
-                HelperFunctions.saveUserNameSharedPreference(
-                    userInfoSnapshot.documents[0].data["username"]);
-                HelperFunctions.saveUserEmailSharedPreference(
-                    userInfoSnapshot.documents[0].data["email"]);
-
-                onSignIn();
-              }
-            }),
+                CoreLogic.instance.authenticationLogic.add(FacebookSignIn(email: emailEditingController.text)),
             AssetImage(
               'assets/logos/facebook.jpg',
             ),
@@ -267,21 +244,7 @@ class _SignInState extends State<SignIn> {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ChatRoom()));
             })*/
-                googleSignIn().then((value) async {
-              print("Hello");
-              if (value != null) {
-                QuerySnapshot userInfoSnapshot =
-                    await DatabaseMethods().getUserInfo(value);
-                print(value);
-                HelperFunctions.saveUserLoggedInSharedPreference(true);
-                HelperFunctions.saveUserNameSharedPreference(
-                    userInfoSnapshot.documents[0].data["username"]);
-                HelperFunctions.saveUserEmailSharedPreference(
-                    userInfoSnapshot.documents[0].data["email"]);
-                print("Hii");
-                onSignIn();
-              }
-            }),
+    CoreLogic.instance.authenticationLogic.add(GoogleSignIn()),
             AssetImage(
               'assets/logos/google.jpg',
             ),
@@ -333,33 +296,6 @@ class _SignInState extends State<SignIn> {
           'Forgot Password?',
           style: kLabelStyle,
         ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
       ),
     );
   }
@@ -456,23 +392,7 @@ class _SignInState extends State<SignIn> {
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: RaisedButton(
-                        onPressed: () => signin(email, password, context)
-                                .then((value) async {
-                              if (value != null) {
-                                QuerySnapshot userInfoSnapshot =
-                                    await DatabaseMethods().getUserInfo(
-                                        emailEditingController.text);
-                                HelperFunctions
-                                    .saveUserLoggedInSharedPreference(true);
-                                HelperFunctions.saveUserNameSharedPreference(
-                                    userInfoSnapshot
-                                        .documents[0].data["username"]);
-                                HelperFunctions.saveUserEmailSharedPreference(
-                                    userInfoSnapshot
-                                        .documents[0].data["email"]);
-                                onSignIn();
-                              }
-                            }),
+                        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email, psw:password, context:context)),
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
