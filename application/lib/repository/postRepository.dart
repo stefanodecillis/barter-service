@@ -5,4 +5,5 @@ class PostRepository {
   PostProvider _postProvider = new PostProvider();
 
   Future<List<Post>> getPosts() => _postProvider.getPosts();
+  Future<List<Post>> getUserPosts() => _postProvider.getUserPosts();
 }

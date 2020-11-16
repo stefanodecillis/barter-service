@@ -1,3 +1,4 @@
+import 'package:barter/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,62 +12,54 @@ class PostFilters extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                child: Center(child: Text('filter 1')),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                child: Center(child: Text('filter 1')),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                child: Center(child: Text('filter 1')),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                child: Center(child: Text('filter 1')),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                child: Center(child: Text('filter 1')),
-                width: 100,
-                height: 30,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(40))),
-              ),
-            ),
+            PostFilter(name: "Near",),
+            PostFilter(name: "Cheaper"),
+            PostFilter(name: "Homemade"),
+            PostFilter(name: "Vintage"),
           ],
         ));
+  }
+}
+
+class PostFilter extends StatefulWidget {
+  PostFilter({this.name});
+  final String name;
+
+  @override
+  _PostFilterState createState() => new _PostFilterState(name: name);
+
+}
+
+class _PostFilterState extends State<PostFilter>{
+
+  _PostFilterState({this.name});
+  final String name;
+  bool isEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 5, right: 5),
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            isEnabled = !isEnabled;
+          });
+        },
+        child: Container(
+          child: Center(child: Text(name)),
+          width: 100,
+          height: 30,
+          decoration: BoxDecoration(
+              color: isEnabled? enabledSecondTheme:secondBg,
+              borderRadius: BorderRadius.all(Radius.circular(40))),
+        ),
+      ),
+    );
   }
 }

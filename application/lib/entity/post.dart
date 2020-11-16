@@ -32,4 +32,14 @@ class Post {
     }
     return false;
   }
+
+  List<Post> deleteFromList(List<Post> list){
+    for(Post element in list){
+      if(element.title == this.title && element.description == this.description){
+        list.remove(element);
+        return list;
+      }
+    }
+    return list;
+  }
 }

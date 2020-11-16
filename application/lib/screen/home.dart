@@ -28,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    logic.add(FetchPosts());
     return Scaffold(
         backgroundColor: secondTheme,
         appBar: AppBar(

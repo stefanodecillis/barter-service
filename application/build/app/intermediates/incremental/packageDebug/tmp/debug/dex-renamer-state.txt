@@ -1,4 +1,4 @@
-#Sat Nov 14 16:11:29 CET 2020
+#Mon Nov 16 14:04:39 CET 2020
 base.2=/home/stefano/projects/barter-service/application/build/app/intermediates/dex/debug/mergeDexDebug/out/classes3.dex
 path.2=classes3.dex
 base.1=/home/stefano/projects/barter-service/application/build/app/intermediates/dex/debug/mergeDexDebug/out/classes2.dex

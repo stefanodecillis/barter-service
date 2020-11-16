@@ -39,44 +39,56 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
         ],
       ),
       backgroundColor: secondBg,
-      body: Column(
-        children: [
-          item.file == null
-              ? Image.network(item.imgUrl)
-              : Image.file(item.file),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                item.title,
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            item.file == null
+                ? Image.network(item.imgUrl)
+                : Image.file(item.file),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  item.title,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                item.description,
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  item.description,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 20,)
+          ],
+        ),
       ),
       floatingActionButton: BlocBuilder<PostLogic, PostState>(
           cubit: CoreLogic.instance.postLogic,
           builder: (context, state) {
+            if(item.insideList(state.userPosts)){
+              return FloatingActionButton(
+                  onPressed: () {
+                    debugPrint('delete');
+                    CoreLogic.instance.postLogic.add(DeletePost(post: this.item));
+                    Navigator.pop(context);
+                  },
+                  child:Icon(Icons.delete_forever));
+            }
             return FloatingActionButton(
                 onPressed: () {
                   debugPrint('love it');

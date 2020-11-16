@@ -24,3 +24,8 @@ class LovePost extends PostEvent {
   final Post post;
   LovePost({this.post});
 }
+
+class DeletePost extends PostEvent {
+  final Post post;
+  DeletePost({this.post});
+}

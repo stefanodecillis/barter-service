@@ -60,17 +60,19 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondBg,
       appBar: AppBar(
+        backgroundColor: mainTheme,
         title: Text(
-          "Tasks",
+          "Active chats",
           style: TextStyle(
             fontFamily: "tepeno",
             fontWeight: FontWeight.w600,
           ),
         ),
         elevation: 0.0,
-        centerTitle: false,
-        actions: [
+        centerTitle: true,
+        /*actions: [
           GestureDetector(
             onTap: () {
               //AuthService().signOut();
@@ -82,18 +84,18 @@ class _ChatRoomState extends State<ChatRoom> {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Icon(Icons.exit_to_app)),
           )
-        ],
+        ],*/
       ),
       body: Container(
         child: chatRoomsList(),
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Search()));
         },
-      ),
+      ),*/
     );
   }
 }
@@ -115,7 +117,7 @@ class ChatRoomsTile extends StatelessWidget {
         ));
       },
       child: Container(
-        color: Colors.black26,
+        color: secondTheme,
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Row(
           children: [
@@ -123,24 +125,28 @@ class ChatRoomsTile extends StatelessWidget {
               height: 30,
               width: 30,
               decoration: BoxDecoration(
-                  color: CustomTheme.colorAccent,
+                  color: mainTheme,
                   borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0, 1),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'OverpassRegular',
-                      fontWeight: FontWeight.w300)),
+              child: Column(
+                children: [
+                  Text(userName.substring(0, 1),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: 'OverpassRegular',
+                          fontWeight: FontWeight.w300))
+                ],
+              )
             ),
             SizedBox(
-              width: 12,
+              width: 15,
             ),
             Text(userName,
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 22,
                     fontFamily: 'OverpassRegular',
                     fontWeight: FontWeight.w300))
           ],

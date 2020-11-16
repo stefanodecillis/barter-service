@@ -1,8 +1,10 @@
+import 'package:barter/constants.dart';
 import 'package:barter/event/AuthenticationEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/screen/chat/chatrooms.dart';
 import 'package:barter/screen/preferPostScreen.dart';
 import 'package:barter/screen/userPostScreen.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,16 +19,14 @@ class BarterDrawer extends StatelessWidget {
             DrawerHeader(
               padding: EdgeInsets.all(0),
               child: Container(
-                color: Colors.red[500],
-                padding: EdgeInsets.all(15),
+                color: mainTheme,
+                padding: EdgeInsets.all(25),
                 child: Container(
                   decoration:
-                      BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+                      BoxDecoration(color: mainBg, shape: BoxShape.circle),
+                  child: Icon(EvaIcons.person,size: 50,)
                 ),
               ),
-            ),
-            ListTile(
-              title: Text('Home'),
             ),
             GestureDetector(
               onTap: () {
@@ -58,7 +58,7 @@ class BarterDrawer extends StatelessWidget {
                 );
               },
               child: ListTile(
-                title: Text('test'),
+                title: Text('Active chats'),
               ),
             ),
             GestureDetector(

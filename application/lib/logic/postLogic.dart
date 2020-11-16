@@ -18,7 +18,7 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       PostState ss = generateState(state);
       ss.posts = await _repository.getPosts();
       yield ss;
-      ss.userPosts = await _repository.getPosts();
+      ss.userPosts = await _repository.getUserPosts();
       yield ss;
     } else if (event is FetchFilter) {
       PostState ss = generateState(state);
@@ -45,6 +45,11 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       } else {
         ss.preferPosts.add(event.post);
       }
+      yield ss;
+    } else if (event is DeletePost){
+      PostState ss = generateState(state);
+      ss.userPosts = event.post.deleteFromList(ss.userPosts);
+      ss.posts = event.post.deleteFromList(ss.posts);
       yield ss;
     }
   }
