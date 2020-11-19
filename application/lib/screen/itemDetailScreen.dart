@@ -36,7 +36,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed: () => Search(item.title),
+            onPressed: () => Search(item.id.toString()),
           )
         ],
       ),
