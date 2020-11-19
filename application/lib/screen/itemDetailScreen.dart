@@ -8,8 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'chat/search.dart';
+import 'package:barter/handler/helperfunctions.dart';
+import 'package:barter/provider/database.dart';
+import 'chat/chat.dart';
 
 class ItemDetailScreen extends StatefulWidget {
   ItemDetailScreen(this.item);
@@ -36,7 +37,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed: () => Search(item.id.toString()),
+            onPressed: () => sendMessage("USERNAME",item.id.toString()),//Search(item.id.toString()),
           )
         ],
       ),
@@ -102,7 +103,33 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
           }),
     );
   }
+  sendMessage(String userName, String itemId){
+    DatabaseMethods databaseMethods = new DatabaseMethods();
+    List<String> users = [HelperFunctions.myName,userName];
 
+    String chatRoomId = getChatRoomId(HelperFunctions.myName,userName,itemId);
+
+    Map<String, dynamic> chatRoom = {
+      "users": users,
+      "chatRoomId" : chatRoomId,
+    };
+
+    databaseMethods.addChatRoom(chatRoom, chatRoomId);
+
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => Chat(
+          chatRoomId: chatRoomId,
+        )
+    ));
+
+  }
+  getChatRoomId(String a, String b, String c) {
+    if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
+      return "$c\_$b\_$a";
+    } else {
+      return "$a\_$b\_$c";
+    }
+  }
   @override
   void dispose() {
     super.dispose();
