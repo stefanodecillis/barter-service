@@ -32,6 +32,7 @@ class _SignUpState extends State<SignUp> {
   String userName;
   TextEditingController emailEditingController = new TextEditingController();
   TextEditingController passwordEditingController = new TextEditingController();
+  TextEditingController confirmPasswordEditingController = new TextEditingController();
   TextEditingController usernameEditingController =      new TextEditingController();
 
   AuthService authService = new AuthService();
@@ -69,169 +70,124 @@ class _SignUpState extends State<SignUp> {
     }
   }
   Widget _builduserNameTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'User Name',
-          style: kLabelStyle,
+    return Container(
+      decoration: BoxDecoration(
+          color: secondBg,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      margin: EdgeInsets.only(left: 20, right: 20),
+      child: TextField(
+        controller: usernameEditingController,
+        keyboardType: TextInputType.emailAddress,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'OpenSans',
         ),
-        SizedBox(height: 10.0),
-        Container(
-
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: usernameEditingController,
-            keyboardType: TextInputType.text,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            onChanged: (val) {
-              userName = val;
-            },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.account_circle,
-                color: Colors.black,
-              ),
-              hintText: 'Enter your User Name',
-              hintStyle: kHintTextStyle,
-            ),
+        onChanged: (val) {
+          email = val;
+        },
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 14.0),
+          prefixIcon: Icon(
+            Icons.person,
+            color: secondTheme,
           ),
+          hintText: 'Enter your Username',
         ),
-      ],
+      ),
     );
+
   }
 
   Widget _buildEmailTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: emailEditingController,
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            onChanged: (val) {
-              email = val;
-            },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.black,
-              ),
-              hintText: 'Enter your Email',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-
-          height: 60.0,
-          child: TextFormField(
-            controller: passwordEditingController,
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            onChanged: (val) {
-              password = val;
-            },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.black,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSignUpBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signup(email:email.trim(), psw:password, username:userName, context:context)),
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+      decoration: BoxDecoration(
+          color: secondBg,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      margin: EdgeInsets.only(left: 20, right: 20),
+      child: TextField(
+        controller: emailEditingController,
+        keyboardType: TextInputType.emailAddress,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'OpenSans',
         ),
-        color: Colors.white,
-        child: Text(
-          'SIGN UP',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
+        onChanged: (val) {
+          email = val;
+        },
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 14.0),
+          prefixIcon: Icon(
+            Icons.email,
+            color: secondTheme,
           ),
+          hintText: 'Enter your email',
         ),
       ),
     );
   }
 
-  Widget _buildSignInWithText() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
+  Widget _buildPasswordTF() {
+    return Container(
+      decoration: BoxDecoration(
+          color: secondBg,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      margin: EdgeInsets.only(left: 20, right: 20),
+      child: TextField(
+        controller: passwordEditingController,
+        obscureText: true,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'OpenSans',
+        ),
+        onChanged: (val) {
+          password = val;
+        },
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 14.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: secondTheme,
           ),
+          hintText: 'Enter your Password',
+          hintStyle: kHintTextStyle,
         ),
-        SizedBox(height: 20.0),
-        Text(
-          'Sign up with',
-          style: kLabelStyle,
-        ),
-      ],
+      ),
     );
   }
+
+  Widget _buildConfirmPasswordTF() {
+    return Container(
+      decoration: BoxDecoration(
+          color: secondBg,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      margin: EdgeInsets.only(left: 20, right: 20),
+      child: TextField(
+        controller: confirmPasswordEditingController,
+        obscureText: true,
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'OpenSans',
+        ),
+        onChanged: (val) {
+          password = val;
+        },
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.only(top: 14.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: secondTheme,
+          ),
+          hintText: 'Confirm your Password',
+          hintStyle: kHintTextStyle,
+        ),
+      ),
+    );
+  }
+
 
   Widget _buildSocialBtn(Function onTap, AssetImage logo) {
     return GestureDetector(
@@ -290,108 +246,70 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () {
-        // send to login screen
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => SignUp()));
-      },//=> print('Sign Up Button Pressed'),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: formKey,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
+        body: Stack(
+          children: [
+            Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFB2DFDB),
-                      Color(0xFF80CBC4),
-                      Color(0xFF4DB6AC),
-                      Color(0xFF26A69A),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [secondTheme, Colors.red]))),
+            SafeArea(
+              child: Padding(
+                padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      /*Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),*/
-                      /*Image( image: AssetImage(
-                        'assets/logos/Accounting.png',
-                      ),),*/
+                    children: [
+                      SizedBox(
+                        height: 50,
+                      ),
                       _builduserNameTF(),
                       SizedBox(height: 30.0),
                       _buildEmailTF(),
                       SizedBox(
                         height: 30.0,
                       ),
-                      _buildPasswordTF(),
-                      _buildSignUpBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
+                      _buildPasswordTF(), SizedBox(
+                        height: 30.0,
+                      ),
+
+                      _buildConfirmPasswordTF(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      Container(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: RaisedButton(
+                            onPressed: () {
+                              if(passwordEditingController.text != confirmPasswordEditingController.text){
+                                debugPrint("password doesn't match");
+                                return null;
+                                }
+                              CoreLogic.instance.authenticationLogic.add(Signup(email:email.trim(), psw:password, username:userName, context:context));
+                            } ,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            disabledColor: secondBg,
+                            child: Text(
+                              "SIGN UP",
+                              style: TextStyle(color: secondTheme, fontSize: 21),
+                            )),
+                      ),
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            ),
+          ],
+        ));
   }
 
 }

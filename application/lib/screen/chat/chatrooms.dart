@@ -22,20 +22,22 @@ class _ChatRoomState extends State<ChatRoom> {
     return StreamBuilder(
       stream: chatRooms,
       builder: (context, snapshot) {
-        return snapshot.hasData
+        return snapshot.hasData && snapshot.data.documents.length>0
             ? ListView.builder(
                 itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return ChatRoomsTile(
-                    userName: snapshot.data.documents[0].data['chatRoomId']
+                    userName: snapshot.data.documents[index].data['chatRoomId']
                         .toString()
                         .replaceAll("_", "")
                         .replaceAll(HelperFunctions.myName, ""),
-                    chatRoomId: snapshot.data.documents[0].data["chatRoomId"],
+                    chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
                   );
                 })
-            : Container();
+            : Container(
+          child: Text("no chats, sorry :)"),
+        );
       },
     );
   }

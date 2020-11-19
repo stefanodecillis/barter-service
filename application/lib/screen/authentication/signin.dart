@@ -32,7 +32,6 @@ class _SignInState extends State<SignIn> {
   TextEditingController usernameEditingController = new TextEditingController();
   String email;
   String password;
-  bool _rememberMe = false;
   AuthService authService = new AuthService();
 
   final formKey = GlobalKey<FormState>();
@@ -68,110 +67,6 @@ class _SignInState extends State<SignIn> {
         }
       });
     }
-  }
-
-  Widget _buildEmailTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            controller: emailEditingController,
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'OpenSans',
-            ),
-            onChanged: (val) {
-              email = val;
-            },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.black,
-              ),
-              hintText: 'Enter your Email',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            controller: passwordEditingController,
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'OpenSans',
-            ),
-            onChanged: (val) {
-              password = val;
-            },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.black,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLoginBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email, psw:password, context:context)),
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.white,
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _buildSignInWithText() {
@@ -221,84 +116,6 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  Widget _buildSocialBtnRow() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildSocialBtn(
-            () =>
-                /*SignInFacebook().whenComplete(() async {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ChatRoom()));
-            })*/
-                CoreLogic.instance.authenticationLogic.add(FacebookSignIn(email: emailEditingController.text)),
-            AssetImage(
-              'assets/logos/facebook.jpg',
-            ),
-          ),
-          _buildSocialBtn(
-            () =>
-                /*googleSignIn().whenComplete(() async {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => ChatRoom()));
-            })*/
-    CoreLogic.instance.authenticationLogic.add(GoogleSignIn()),
-            AssetImage(
-              'assets/logos/google.jpg',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () {
-        // send to login screen
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => SignUp()));
-      }, //=> print('Sign Up Button Pressed'),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -404,7 +221,7 @@ class _SignInState extends State<SignIn> {
                         )),
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 100,
                   ),
                   Container(
                     height: 40,
@@ -426,72 +243,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(
                     height: 5,
-                  ),
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: RaisedButton(
-                        onPressed: () => {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUp()))
-                            },
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        disabledColor: secondBg,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/logos/google.jpg',
-                              height: 20,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text(
-                              "Sign in with Google",
-                              style:
-                                  TextStyle(color: secondTheme, fontSize: 19),
-                            ),
-                          ],
-                        )),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: RaisedButton(
-                        onPressed: () => {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUp()))
-                            },
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        disabledColor: secondBg,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/logos/facebook.jpg',
-                              height: 20,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text(
-                              "Sign in with Facebook",
-                              style:
-                                  TextStyle(color: secondTheme, fontSize: 19),
-                            ),
-                          ],
-                        )),
-                  ),
+                  )
                 ],
               ),
             ),
