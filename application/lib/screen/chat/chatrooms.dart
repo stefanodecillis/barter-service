@@ -1,12 +1,7 @@
 import 'package:barter/constants.dart';
-import 'package:barter/event/AuthenticationEvent.dart';
-import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/handler/helperfunctions.dart';
-import 'package:barter/provider/authentications.dart';
 import 'package:barter/provider/database.dart';
-import 'package:barter/screen/authentication/authenticate.dart';
 import 'package:barter/screen/chat/chat.dart';
-import 'package:barter/screen/chat/search.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoom extends StatefulWidget {
@@ -22,7 +17,7 @@ class _ChatRoomState extends State<ChatRoom> {
     return StreamBuilder(
       stream: chatRooms,
       builder: (context, snapshot) {
-        return snapshot.hasData && snapshot.data.documents.length>0
+        return snapshot.hasData  && snapshot.data.documents.length>0 && HelperFunctions.myName != null
             ? ListView.builder(
                 itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
@@ -36,7 +31,7 @@ class _ChatRoomState extends State<ChatRoom> {
                   );
                 })
             : Container(
-          child: Text("no chats, sorry :)"),
+          child: Text("No Chats to Display"),
         );
       },
     );
@@ -95,7 +90,7 @@ class _ChatRoomState extends State<ChatRoom> {
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Search()));
+              context, MaterialPageRoute(builder: (context) => Search("ITEMID")));
         },
       ),*/
     );
