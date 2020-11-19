@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'chat/search.dart';
+
 class ItemDetailScreen extends StatefulWidget {
   ItemDetailScreen(this.item);
   final Post item;
@@ -34,7 +36,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed: () => debugPrint("open chat with the seller"),
+            onPressed: () => Search(item.title),
           )
         ],
       ),

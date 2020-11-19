@@ -9,17 +9,10 @@ This project is a starting point to to implement an image recognition api that w
 The buyer looking out to buy some services, can login to the app and search for its desired service. If the service is found in the database of the application he/she can contact the owner using the chat window in order to proceed with their transaction.
 
 # ToDo
-
-- carousel in item detail page    --- stefano
-- authentication and chat services beautification and to bloc paradigm  --- stefano
+- chat services beautification and to bloc paradigm  --- stefano
 - check text during signup and login (trim)
 - add loading animation
-- make login page without scrolling
-- API recognition with backend
 - userid should be unique (for chats)
 - split widget/wgt_split.dart todo
+- remove all log comments
 
-
-# bonus
-
-- backend logic (to be finished)

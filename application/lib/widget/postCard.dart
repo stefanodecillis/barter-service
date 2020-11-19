@@ -45,7 +45,7 @@ class PostCard extends StatelessWidget {
                 height: 15,
               ),
               Padding(padding: EdgeInsets.only(left:10, right: 10),
-              child: Container(width: MediaQuery.of(context).size.width*0.4, child: Text(post.description,textAlign: TextAlign.center,),),)
+              child: Container(width: MediaQuery.of(context).size.width*0.4, child: Text(post.description.length > 25 ?post.description.substring(0,24)+"..." : post.description,textAlign: TextAlign.center,),),)
             ],
           ),
           Spacer()

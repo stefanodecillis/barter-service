@@ -7,12 +7,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Search extends StatefulWidget {
+
+  String ITEMID;
+  Search(String itemID){
+    debugPrint(itemID);
+    ITEMID=itemID;
+  }
+
   @override
-  _SearchState createState() => _SearchState();
+  _SearchState createState() => _SearchState(ITEMID);
 }
 
 class _SearchState extends State<Search> {
-
+  _SearchState(String itemid){
+    ITEMID=itemid;
+  }
+  String ITEMID;
   Stream<QuerySnapshot> chats;
   String USERNAME;
   String EMAIL;
@@ -66,10 +76,10 @@ class _SearchState extends State<Search> {
   }
 
   /// 1.create a chatroom, send user to the chatroom, other userdetails
-  sendMessage(String userName){
+  sendMessage(String userName, String itemId){
     List<String> users = [HelperFunctions.myName,userName];
 
-    String chatRoomId = getChatRoomId(HelperFunctions.myName,userName);
+    String chatRoomId = getChatRoomId(HelperFunctions.myName,userName,itemId);
 
     Map<String, dynamic> chatRoom = {
       "users": users,
@@ -119,7 +129,7 @@ class _SearchState extends State<Search> {
           Spacer(),
           GestureDetector(
             onTap: (){
-              sendMessage(USERNAME);
+              sendMessage(USERNAME,ITEMID);
             },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
@@ -140,11 +150,11 @@ class _SearchState extends State<Search> {
   }
 
 
-  getChatRoomId(String a, String b) {
+  getChatRoomId(String a, String b, String c) {
     if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
-      return "$b\_$a";
+      return "$c\_$b\_$a";
     } else {
-      return "$a\_$b";
+      return "$a\_$b\_$c";
     }
   }
 
