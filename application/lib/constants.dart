@@ -7,11 +7,11 @@ final String apiKey = "acc_6941c2855e44a64";
 final String apiSecret = "2edb128375d04f1086a64d9d9a034909";
 ///
 
-final mainTheme = Hexcolor('#EA5455');
-final secondTheme = Hexcolor("#2d4059");
-final mainBg = Hexcolor('#decdc3');
-final secondBg = Hexcolor('#e5e5e5');
-final enabledSecondTheme = Hexcolor("#f3b416");
+final mainTheme = HexColor('#EA5455');
+final secondTheme = HexColor("#2d4059");
+final mainBg = HexColor('#decdc3');
+final secondBg = HexColor('#e5e5e5');
+final enabledSecondTheme = HexColor("#f3b416");
 
 
 final kHintTextStyle = TextStyle(
