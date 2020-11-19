@@ -4,6 +4,7 @@ import 'package:barter/provider/database.dart';
 import 'package:barter/repository/authRepository.dart';
 import 'package:barter/state/AuthenticationState.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationLogic
@@ -71,6 +72,7 @@ class AuthenticationLogic
       _repository.signUp(event.email, event.psw, event.username, event.context).then((value) {
         if (value != null) {
           this.add(Login());
+          Navigator.pop(event.context);
         }
       });
     } else if (event is GoogleSignUp || event is FacebookSignUp) {
