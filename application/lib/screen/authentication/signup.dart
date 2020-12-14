@@ -288,7 +288,7 @@ class _SignUpState extends State<SignUp> {
                         child: RaisedButton(
                             onPressed: () {
                               if(passwordEditingController.text != confirmPasswordEditingController.text){
-                                debugPrint("password doesn't match");
+                                debugPrint("password doesn't match"); //todo make alert and trim email and password
                                 return null;
                                 }
                               CoreLogic.instance.authenticationLogic.add(Signup(email:email.trim(), psw:password, username:userName, context:context));

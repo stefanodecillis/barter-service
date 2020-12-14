@@ -31,7 +31,9 @@ class _ChatRoomState extends State<ChatRoom> {
                   );
                 })
             : Container(
-          child: Text("No Chats to Display"),
+          child: Center(
+            child: Text("No Chats to here :("),
+          ),
         );
       },
     );

@@ -209,7 +209,7 @@ class _SignInState extends State<SignIn> {
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: RaisedButton(
-                        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email, psw:password, context:context)),
+                        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email.trim(), psw:password.trim(), context:context)),
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),

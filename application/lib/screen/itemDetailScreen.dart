@@ -35,10 +35,11 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
       appBar: AppBar(
         backgroundColor: mainTheme,
         actions: [
+          item.author != 'myself'?
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed: () => sendMessage("USERNAME",item.id.toString()),//Search(item.id.toString()),
-          )
+            onPressed: () => sendMessage(item.author,item.id.toString()),//Search(item.id.toString()),
+          ):SizedBox()
         ],
       ),
       backgroundColor: secondBg,
@@ -107,6 +108,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
     DatabaseMethods databaseMethods = new DatabaseMethods();
     List<String> users = [HelperFunctions.myName,userName];
 
+    //todo not working for new chats. what if the chat does not exist? You need to create it
     String chatRoomId = getChatRoomId(HelperFunctions.myName,userName,itemId);
 
     Map<String, dynamic> chatRoom = {
