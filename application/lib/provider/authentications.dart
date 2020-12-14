@@ -105,6 +105,7 @@ class AuthenticationProvider {
       HelperFunctions.saveUserLoggedInSharedPreference(true);
       HelperFunctions.saveUserNameSharedPreference(email);
       HelperFunctions.saveUserEmailSharedPreference(email);
+
       return Future.value(user);
     } catch (e) {
       // simply passing error code as a message
@@ -148,10 +149,13 @@ class AuthenticationProvider {
       if (result != null) {
         Map<String, String> userDataMap = {"username": userName, "email": email};
         databaseMethods.addUserInfo(userDataMap);
-
+debugPrint("Insideauthentications"+userName);
         HelperFunctions.saveUserLoggedInSharedPreference(true);
         HelperFunctions.saveUserNameSharedPreference(userName);
         HelperFunctions.saveUserEmailSharedPreference(email);
+        debugPrint("Insideauthentications1"+userName);
+        HelperFunctions.myName=userName;
+        debugPrint("Insideauthentications2"+userName);
       }
 
       return Future.value(user);
@@ -236,13 +240,15 @@ class AuthenticationProvider {
   }
 
   Future signOutUser() async {
+    print("signOutUser");
     FirebaseUser user = await auth.currentUser();
-    print(user.providerData[1].providerId);
-    if (user.providerData[1].providerId == 'google.com') {
+    /*print(user.providerData[0].providerId);
+    if (user.providerData[0].providerId == 'google.com') {
       await gooleSignIn.disconnect();
-    }
+    }*/
     await auth.signOut();
     HelperFunctions.clearData();
+    HelperFunctions.myName="";
     return Future.value(true);
   }
 

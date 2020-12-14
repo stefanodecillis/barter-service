@@ -22,12 +22,16 @@ class _ChatRoomState extends State<ChatRoom> {
                 itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
+                  debugPrint("2...."+snapshot.data.documents[index].data['chatRoomId'].toString());
                   return ChatRoomsTile(
+
                     userName: snapshot.data.documents[index].data['chatRoomId']
                         .toString()
                         .replaceAll("_", "")
                         .replaceAll(HelperFunctions.myName, ""),
+
                     chatRoomId: snapshot.data.documents[index].data["chatRoomId"],
+
                   );
                 })
             : Container(

@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
       await authService.signUpWithEmailAndPassword(emailEditingController.text,
           passwordEditingController.text).then((result){
             if(result != null){
-
+              print("TESTTTTT"+userName);
               Map<String,String> userDataMap = {
                 "username" : usernameEditingController.text,
                 "email" : emailEditingController.text
@@ -61,9 +61,9 @@ class _SignUpState extends State<SignUp> {
               databaseMethods.addUserInfo(userDataMap);
 
               HelperFunctions.saveUserLoggedInSharedPreference(true);
-              HelperFunctions.saveUserNameSharedPreference(usernameEditingController.text);
-              HelperFunctions.saveUserEmailSharedPreference(emailEditingController.text);
-
+              HelperFunctions.saveUserNameSharedPreference(userName);
+              HelperFunctions.saveUserEmailSharedPreference(email);
+              HelperFunctions.myName=userName;
               onSignIn();
             }
       });
@@ -83,7 +83,8 @@ class _SignUpState extends State<SignUp> {
           fontFamily: 'OpenSans',
         ),
         onChanged: (val) {
-          email = val;
+          userName= val;
+          print("TESTTTTT"+userName);
         },
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -291,6 +292,7 @@ class _SignUpState extends State<SignUp> {
                                 debugPrint("password doesn't match"); //todo make alert and trim email and password
                                 return null;
                                 }
+                              print(email+password+userName);
                               CoreLogic.instance.authenticationLogic.add(Signup(email:email.trim(), psw:password, username:userName, context:context));
                             } ,
                             elevation: 5,

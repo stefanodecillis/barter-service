@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:barter/handler/helperfunctions.dart';
 import 'package:barter/provider/database.dart';
 import 'package:barter/screen/chat/chat.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Search extends StatefulWidget {
 
@@ -19,9 +17,12 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+
   _SearchState(String itemid){
     ITEMID=itemid;
+    debugPrint(itemid);
   }
+
   String ITEMID;
   Stream<QuerySnapshot> chats;
   String USERNAME;

@@ -39,8 +39,12 @@ class AuthenticationLogic
       ss.isLoggedIn = true;
       yield ss;
     } else if (event is Signin){
+      print("Hello22");
+      print(event.email+ event.psw);
       _repository.signIn(event.email, event.psw, event.context).then((value) async {
         if (value != null) {
+          print("Hello33");
+
           QuerySnapshot userInfoSnapshot = await DatabaseMethods()
               .getUserInfo(event.email);
 
@@ -97,6 +101,7 @@ class AuthenticationLogic
       password=event.psw;
       print(event.email+event.psw+event.username);
       _repository.signUp(event.email, event.psw, event.username, event.context).then((value) {
+        print("DUSTOOO3");
         if (value != null) {
           this.add(Login());
           Navigator.pop(event.context);
@@ -117,6 +122,7 @@ class AuthenticationLogic
         });
       }
     } else if (event is Logout) {
+      print("logout");
       AuthenticationState ss = generateState(state);
       if (await _repository.signOut()) {
         ss.isLoggedIn = false;

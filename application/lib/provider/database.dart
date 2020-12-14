@@ -8,6 +8,7 @@ class DatabaseMethods {
   }
 
   getUserInfo(String email) async {
+    print("getUserInfo email"+email);
     print(Firestore.instance
         .collection("users")
         .where("email", isEqualTo: email)

@@ -53,6 +53,12 @@ class _SignInState extends State<SignIn> {
               await DatabaseMethods().getUserInfo(emailEditingController.text);
 
           HelperFunctions.saveUserLoggedInSharedPreference(true);
+          HelperFunctions.myName=(userInfoSnapshot.documents[0].data["username"]);
+          debugPrint("1");
+          debugPrint(HelperFunctions.myName);
+          debugPrint(userInfoSnapshot.documents[0].data["username"]);
+          debugPrint("2");
+          debugPrint(userInfoSnapshot.documents[0].data["email"]);
           HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
           HelperFunctions.saveUserEmailSharedPreference(

@@ -106,7 +106,11 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
   }
   sendMessage(String userName, String itemId){
     DatabaseMethods databaseMethods = new DatabaseMethods();
+    debugPrint('love it2');
     List<String> users = [HelperFunctions.myName,userName];
+    debugPrint('love it3');
+    debugPrint(HelperFunctions.myName);
+    debugPrint(userName);
 
     //todo not working for new chats. what if the chat does not exist? You need to create it
     String chatRoomId = getChatRoomId(HelperFunctions.myName,userName,itemId);
