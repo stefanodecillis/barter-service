@@ -53,6 +53,8 @@ class AuthenticationLogic
           password="123";
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
+          print("TESTTT"+userInfoSnapshot.documents[0].data["username"]);
+          HelperFunctions.myName=userInfoSnapshot.documents[0].data["username"];
           this.add(Login());
         }
       });
@@ -89,6 +91,11 @@ class AuthenticationLogic
         }
       });
     } else if (event is Signup) {
+      print("DUSTOOO");
+      email=event.email;
+      userName=event.username;
+      password=event.psw;
+      print(event.email+event.psw+event.username);
       _repository.signUp(event.email, event.psw, event.username, event.context).then((value) {
         if (value != null) {
           this.add(Login());
