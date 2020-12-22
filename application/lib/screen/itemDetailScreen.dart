@@ -118,6 +118,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
     Map<String, dynamic> chatRoom = {
       "users": users,
       "chatRoomId" : chatRoomId,
+      "chatDateTime" : DateTime.now().millisecondsSinceEpoch,
     };
 
     databaseMethods.addChatRoom(chatRoom, chatRoomId);
