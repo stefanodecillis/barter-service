@@ -12,6 +12,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class UploadDataScreen extends StatelessWidget {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _tagsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +27,16 @@ class UploadDataScreen extends StatelessWidget {
           _titleController.text = "";
           _descriptionController.text = "";
 
-          String hints = state.imageRecognitionResult==null?null:state.imageRecognitionResult.providedResults();
+          String hints = state.imageRecognitionResult == null
+              ? null
+              : state.imageRecognitionResult.providedResults();
 
           return SingleChildScrollView(
             child: Column(
               children: [
                 Center(
                   child: Container(
-                    padding: EdgeInsets.only( bottom: 10),
+                    padding: EdgeInsets.only(bottom: 10),
                     child: Image.file(
                       state.image,
                       //height: 200,
@@ -43,20 +46,37 @@ class UploadDataScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
-                Center(
-                    child: TitleInput(
-                  controller: _titleController,
-                      hint: hints,
-                )),
-                SizedBox(
-                  height: 30,
-                ),
-                Center(
-                    child: DescriptionInput(
-                  controller: _descriptionController,
-                )),
-                SizedBox(
-                  height: 50,
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.10,
+                      right: MediaQuery.of(context).size.width * 0.10),
+                  child: Column(
+                    children: [
+                      Center(
+                          child: TitleInput(
+                        controller: _titleController,
+                        hint: hints,
+                      )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                          child: DescriptionInput(
+                        controller: _descriptionController,
+                      )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                          child: TagsInput(
+                        controller: _tagsController,
+                        hint: hints,
+                      )),
+                      SizedBox(
+                        height: 50,
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.5,
@@ -72,8 +92,15 @@ class UploadDataScreen extends StatelessWidget {
                         return;
                       }
                       onSuccess(context);
-                      CoreLogic.instance.uploadProcessLogic.add(UploadPost(post: Post.file(title: _titleController.text,
-                          description: _descriptionController.text, file: state.image)),
+                      List<String> tags =
+                          _tagsController.text.trim().split(',');
+                      CoreLogic.instance.uploadProcessLogic.add(
+                        UploadPost(
+                            post: Post.file(
+                                title: _titleController.text,
+                                description: _descriptionController.text,
+                                file: state.image,
+                                tags: tags)),
                       );
                     },
                     color: mainTheme,
@@ -145,36 +172,30 @@ class TitleInput extends StatelessWidget {
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width * 0.15,
-          decoration: BoxDecoration(
-              border: Border.all(color: secondTheme),
-              shape: BoxShape.rectangle),
-          child: Center(
-              child: Padding(
-                  padding: EdgeInsets.only(left: 3, right: 3),
-                  child: Text("Title",
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)))),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, bottom: 5),
+            child: Text("Title",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.7,
           height: 50,
           decoration: BoxDecoration(
-            border: Border.all(color: secondTheme),
-          ),
+              border: Border.all(color: secondTheme),
+              borderRadius: BorderRadius.circular(10)),
           child: TextFormField(
             controller: controller,
             style: TextStyle(fontSize: 20),
             decoration: InputDecoration(
-                hintText: hint==null?"Name of the object": hint,
+                border: InputBorder.none,
+                hintText: hint == null ? "Name of the object" : hint,
                 contentPadding: EdgeInsets.only(left: 20)),
           ),
-        ),
+        )
       ],
     );
   }
@@ -188,33 +209,65 @@ class DescriptionInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: 50,
-          decoration: BoxDecoration(
-              border: Border.all(color: secondTheme),
-              shape: BoxShape.rectangle),
-          child: Center(
-              child: Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  child: Text("Description",
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)))),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, bottom: 5),
+            child: Text("Description",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.85,
           decoration: BoxDecoration(
-            border: Border.all(color: secondTheme),
-          ),
+              border: Border.all(color: secondTheme),
+              borderRadius: BorderRadius.circular(10)),
           child: TextFormField(
             controller: controller,
             style: TextStyle(fontSize: 20),
             maxLines: null,
             decoration: InputDecoration(
                 hintText: "Put here its description",
+                border: InputBorder.none,
                 contentPadding: EdgeInsets.only(left: 20, top: 10, bottom: 10)),
           ),
+        )
+      ],
+    );
+  }
+}
+
+class TagsInput extends StatelessWidget {
+  TagsInput({this.controller, this.hint});
+  final String hint;
+  final TextEditingController controller;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, bottom: 5),
+            child: Text("Tags",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
         ),
+        Container(
+          height: 50,
+          decoration: BoxDecoration(
+              border: Border.all(color: secondTheme),
+              borderRadius: BorderRadius.circular(10)),
+          child: TextFormField(
+            controller: controller,
+            style: TextStyle(fontSize: 20),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hint == null
+                    ? "vintage, technology, homemade,.."
+                    : "vintage, " + hint,
+                contentPadding: EdgeInsets.only(left: 20)),
+          ),
+        )
       ],
     );
   }

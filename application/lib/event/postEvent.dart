@@ -11,6 +11,11 @@ class FetchFilter extends PostEvent {
   FetchFilter(this.pattern);
 }
 
+class AddFilter extends PostEvent {
+  final String filter;
+  AddFilter(this.filter);
+}
+
 class RestoreResult extends PostEvent {}
 
 class AddPost extends PostEvent {

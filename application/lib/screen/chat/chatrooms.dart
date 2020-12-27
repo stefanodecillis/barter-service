@@ -1,7 +1,6 @@
 import 'package:barter/constants.dart';
 import 'package:barter/handler/helperfunctions.dart';
 import 'package:barter/provider/database.dart';
-import 'package:barter/screen/chat/chat.dart';
 import 'package:barter/widget/chatroomTile.dart';
 import 'package:flutter/material.dart';
 

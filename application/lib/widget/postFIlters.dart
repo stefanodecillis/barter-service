@@ -1,4 +1,6 @@
 import 'package:barter/constants.dart';
+import 'package:barter/event/postEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +14,10 @@ class PostFilters extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
-            PostFilter(name: "Near",),
-            PostFilter(name: "Cheaper"),
+            PostFilter(
+              name: "Near",
+            ),
+            PostFilter(name: "Cheap"),
             PostFilter(name: "Homemade"),
             PostFilter(name: "Vintage"),
           ],
@@ -27,11 +31,9 @@ class PostFilter extends StatefulWidget {
 
   @override
   _PostFilterState createState() => new _PostFilterState(name: name);
-
 }
 
-class _PostFilterState extends State<PostFilter>{
-
+class _PostFilterState extends State<PostFilter> {
   _PostFilterState({this.name});
   final String name;
   bool isEnabled = false;
@@ -50,13 +52,14 @@ class _PostFilterState extends State<PostFilter>{
           setState(() {
             isEnabled = !isEnabled;
           });
+          CoreLogic.instance.postLogic.add(AddFilter(name));
         },
         child: Container(
           child: Center(child: Text(name)),
           width: 100,
           height: 30,
           decoration: BoxDecoration(
-              color: isEnabled? enabledSecondTheme:secondBg,
+              color: isEnabled ? enabledSecondTheme : secondBg,
               borderRadius: BorderRadius.all(Radius.circular(40))),
         ),
       ),

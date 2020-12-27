@@ -35,11 +35,13 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
       appBar: AppBar(
         backgroundColor: mainTheme,
         actions: [
-          item.author != 'myself'?
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () => sendMessage(item.author,item.id.toString()),//Search(item.id.toString()),
-          ):SizedBox()
+          item.author != 'myself'
+              ? IconButton(
+                  icon: Icon(Icons.chat),
+                  onPressed: () => sendMessage(item.author,
+                      item.id.toString()), //Search(item.id.toString()),
+                )
+              : SizedBox()
         ],
       ),
       backgroundColor: secondBg,
@@ -77,21 +79,38 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20,)
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  item.tags.toString().replaceAll('[', "").replaceAll(']', ""),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
       floatingActionButton: BlocBuilder<PostLogic, PostState>(
           cubit: CoreLogic.instance.postLogic,
           builder: (context, state) {
-            if(item.insideList(state.userPosts)){
+            if (item.insideList(state.userPosts)) {
               return FloatingActionButton(
                   onPressed: () {
                     debugPrint('delete');
-                    CoreLogic.instance.postLogic.add(DeletePost(post: this.item));
+                    CoreLogic.instance.postLogic
+                        .add(DeletePost(post: this.item));
                     Navigator.pop(context);
                   },
-                  child:Icon(Icons.delete_forever));
+                  child: Icon(Icons.delete_forever));
             }
             return FloatingActionButton(
                 onPressed: () {
@@ -104,32 +123,33 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
           }),
     );
   }
-  sendMessage(String userName, String itemId){
+
+  sendMessage(String userName, String itemId) {
     DatabaseMethods databaseMethods = new DatabaseMethods();
     debugPrint('love it2');
-    List<String> users = [HelperFunctions.myName,userName];
+    List<String> users = [HelperFunctions.myName, userName];
     debugPrint('love it3');
     debugPrint(HelperFunctions.myName);
     debugPrint(userName);
 
     //todo not working for new chats. what if the chat does not exist? You need to create it
-    String chatRoomId = getChatRoomId(HelperFunctions.myName,userName,itemId);
+    String chatRoomId = getChatRoomId(HelperFunctions.myName, userName, itemId);
 
     Map<String, dynamic> chatRoom = {
       "users": users,
-      "chatRoomId" : chatRoomId,
-      "chatDateTime" : DateTime.now().millisecondsSinceEpoch,
+      "chatRoomId": chatRoomId,
     };
 
     databaseMethods.addChatRoom(chatRoom, chatRoomId);
 
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context) => Chat(
-          chatRoomId: chatRoomId,
-        )
-    ));
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Chat(
+                  chatRoomId: chatRoomId,
+                )));
   }
+
   getChatRoomId(String a, String b, String c) {
     if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
       return "$c\_$b\_$a";
@@ -137,6 +157,7 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
       return "$a\_$b\_$c";
     }
   }
+
   @override
   void dispose() {
     super.dispose();

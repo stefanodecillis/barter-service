@@ -2,6 +2,7 @@ import 'package:barter/event/postEvent.dart';
 import 'package:barter/repository/postRepository.dart';
 import 'package:barter/state/postState.dart';
 import 'package:barter/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PostLogic extends Bloc<PostEvent, PostState> {
@@ -27,6 +28,7 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       else {
         ss.filtered = true;
         ss.filteredPosts = filterList(ss.posts, event.pattern);
+        ss.filteredPosts = filterTagsList(ss.filteredPosts, ss.tags);
         yield ss;
       }
     } else if (event is RestoreResult) {
@@ -38,22 +40,36 @@ class PostLogic extends Bloc<PostEvent, PostState> {
       PostState ss = generateState(state);
       ss.userPosts.add(event.post);
       yield ss;
-    } else if (event is LovePost){
+    } else if (event is LovePost) {
       PostState ss = generateState(state);
-      if(event.post.insideList(ss.preferPosts)){
+      if (event.post.insideList(ss.preferPosts)) {
         ss.preferPosts.remove(event.post);
       } else {
         ss.preferPosts.add(event.post);
       }
       yield ss;
-    } else if (event is DeletePost){
+    } else if (event is DeletePost) {
       PostState ss = generateState(state);
       ss.userPosts = event.post.deleteFromList(ss.userPosts);
       ss.posts = event.post.deleteFromList(ss.posts);
       yield ss;
+    } else if (event is AddFilter) {
+      PostState ss = generateState(state);
+      if (ss.tags.contains(event.filter)) {
+        ss.tags.remove(event.filter);
+        if (ss.tags.length == 0) {
+          ss.filtered = false;
+        }
+        yield ss;
+      } else {
+        ss.tags.add(event.filter);
+        ss.filtered = true;
+        yield ss;
+      }
+      ss.filteredPosts = filterTagsList(ss.posts, ss.tags);
+      yield ss;
     }
   }
-  
 
   PostState generateState(PostState state) {
     PostState ss = PostState.initial();
@@ -63,6 +79,7 @@ class PostLogic extends Bloc<PostEvent, PostState> {
     ss.filteredPosts = state.filteredPosts;
     ss.userPosts = state.userPosts;
     ss.preferPosts = state.preferPosts;
+    ss.tags = state.tags;
     return ss;
   }
 }

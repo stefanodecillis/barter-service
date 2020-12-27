@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/stefano/projects/barter-service/application/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "C:\\Users\\Stefano\\projects\\barter-service\\application\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/stefano/.gradle/caches/transforms-2/files-2.1/fa359f937282d9a65b67aebf324cfca6/jetified-play-services-auth-16.0.1/res/values-watch-v20/values.xml",
+                    "source": "C:\\Users\\Stefano\\.gradle\\caches\\transforms-2\\files-2.1\\56cc9defbebafbc6a645f82b72b3a52f\\jetified-play-services-auth-16.0.1\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/stefano/.gradle/caches/transforms-2/files-2.1/c0657f060bbaaf69778119b703f4b5fa/appcompat-1.0.0/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "C:\\Users\\Stefano\\.gradle\\caches\\transforms-2\\files-2.1\\c0657f060bbaaf69778119b703f4b5fa\\appcompat-1.0.0\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
