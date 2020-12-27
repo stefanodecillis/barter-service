@@ -6,10 +6,22 @@ class Post {
   String author;
   String description;
   String imgUrl;
-  File file;     // user1_user2_itemid
+  File file; // user1_user2_itemid
+  List<String> tags = [];
 
-  Post({this.id,this.title, this.description, this.imgUrl,this.author});
-  Post.file({this.title,this.description,this.file,this.author = 'myself'});
+  Post(
+      {this.id,
+      this.title,
+      this.description,
+      this.imgUrl,
+      this.author,
+      this.tags});
+  Post.file(
+      {this.title,
+      this.description,
+      this.file,
+      this.author = 'myself',
+      this.tags});
 
   Post.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -25,22 +37,33 @@ class Post {
     return data;
   }
 
-  bool insideList(List<Post> list){
-    for(Post element in list){
-      if(element.title == this.title && element.description == this.description){
+  bool insideList(List<Post> list) {
+    for (Post element in list) {
+      if (element.title == this.title &&
+          element.description == this.description) {
         return true;
       }
     }
     return false;
   }
 
-  List<Post> deleteFromList(List<Post> list){
-    for(Post element in list){
-      if(element.title == this.title && element.description == this.description){
+  List<Post> deleteFromList(List<Post> list) {
+    for (Post element in list) {
+      if (element.title == this.title &&
+          element.description == this.description) {
         list.remove(element);
         return list;
       }
     }
     return list;
+  }
+
+  bool hasTag(String tag) {
+    for (String intag in this.tags) {
+      if (intag.toLowerCase() == tag.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

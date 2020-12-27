@@ -22,10 +22,9 @@ class AuthenticationLogic
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
     if (event is Login) {
-
-      print("Inside Login"+email+userName+password);
-      QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-          .getUserInfo(email);
+      //print("Inside Login"+email+userName+password);
+      QuerySnapshot userInfoSnapshot =
+          await DatabaseMethods().getUserInfo(email);
       print(userInfoSnapshot.documents[0].data["username"]);
       print("2x2");
       HelperFunctions.saveUserLoggedInSharedPreference(true);
@@ -33,74 +32,80 @@ class AuthenticationLogic
           userInfoSnapshot.documents[0].data["username"]);
       HelperFunctions.saveUserEmailSharedPreference(
           userInfoSnapshot.documents[0].data["email"]);
-      HelperFunctions.myName=userInfoSnapshot.documents[0].data["username"];
+      HelperFunctions.myName = userInfoSnapshot.documents[0].data["username"];
       //this.add(Login());
       AuthenticationState ss = generateState(state);
       ss.isLoggedIn = true;
       yield ss;
-    } else if (event is Signin){
+    } else if (event is Signin) {
       print("Hello22");
-      print(event.email+ event.psw);
-      _repository.signIn(event.email, event.psw, event.context).then((value) async {
+      print(event.email + event.psw);
+      _repository
+          .signIn(event.email, event.psw, event.context)
+          .then((value) async {
         if (value != null) {
           print("Hello33");
 
-          QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-              .getUserInfo(event.email);
-
+          QuerySnapshot userInfoSnapshot =
+              await DatabaseMethods().getUserInfo(event.email);
 
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
-          userName=userInfoSnapshot.documents[0].data["username"];
-          email=userInfoSnapshot.documents[0].data["email"];
-          password="123";
+          userName = userInfoSnapshot.documents[0].data["username"];
+          email = userInfoSnapshot.documents[0].data["email"];
+          password = "123";
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
-          print("TESTTT"+userInfoSnapshot.documents[0].data["username"]);
-          HelperFunctions.myName=userInfoSnapshot.documents[0].data["username"];
+          print("TESTTT" + userInfoSnapshot.documents[0].data["username"]);
+          HelperFunctions.myName =
+              userInfoSnapshot.documents[0].data["username"];
           this.add(Login());
         }
       });
-    } else if (event is FacebookSignIn){
+    } else if (event is FacebookSignIn) {
       _repository.facebookSignIn().then((value) async {
         if (value != null) {
-          QuerySnapshot userInfoSnapshot = await DatabaseMethods()
-              .getUserInfo(event.email);
+          QuerySnapshot userInfoSnapshot =
+              await DatabaseMethods().getUserInfo(event.email);
 
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
-          HelperFunctions.myName=userInfoSnapshot.documents[0].data["username"];
+          HelperFunctions.myName =
+              userInfoSnapshot.documents[0].data["username"];
           this.add(Login());
         }
       });
-    } else if (event is GoogleSignIn){
+    } else if (event is GoogleSignIn) {
       _repository.googleSignIn().then((value) async {
         print("Hello");
         if (value != null) {
           QuerySnapshot userInfoSnapshot =
-          await DatabaseMethods().getUserInfo(value);
+              await DatabaseMethods().getUserInfo(value);
           print(value);
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
-          HelperFunctions.myName=userInfoSnapshot.documents[0].data["username"];
+          HelperFunctions.myName =
+              userInfoSnapshot.documents[0].data["username"];
           print("Hii");
           this.add(Login());
         }
       });
     } else if (event is Signup) {
       print("DUSTOOO");
-      email=event.email;
-      userName=event.username;
-      password=event.psw;
-      print(event.email+event.psw+event.username);
-      _repository.signUp(event.email, event.psw, event.username, event.context).then((value) {
+      email = event.email;
+      userName = event.username;
+      password = event.psw;
+      print(event.email + event.psw + event.username);
+      _repository
+          .signUp(event.email, event.psw, event.username, event.context)
+          .then((value) {
         print("DUSTOOO3");
         if (value != null) {
           this.add(Login());
@@ -108,15 +113,15 @@ class AuthenticationLogic
         }
       });
     } else if (event is GoogleSignUp || event is FacebookSignUp) {
-      if(event is GoogleSignUp){
+      if (event is GoogleSignUp) {
         _repository.googleSignUp().then((value) async {
-          if(value != null){
+          if (value != null) {
             this.add(Login());
           }
         });
       } else {
         _repository.facebookSignUp().then((value) async {
-          if(value != null){
+          if (value != null) {
             this.add(Login());
           }
         });

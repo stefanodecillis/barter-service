@@ -20,6 +20,14 @@ class PreferPostScreen extends StatelessWidget {
         body: BlocBuilder<PostLogic, PostState>(
           cubit: CoreLogic.instance.postLogic,
           builder: (context, state) {
+            if (state.preferPosts.length == 0) {
+              return Center(
+                child: Text(
+                  'No items you love yet!',
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
+            }
             return ListView.builder(
               itemCount: state.preferPosts.length,
               itemBuilder: (context, index) {

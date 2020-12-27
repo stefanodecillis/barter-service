@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/stefano/projects/barter-service/application/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rES/values-es-rES.xml",
+            "outputFile": "C:\\Users\\Stefano\\projects\\barter-service\\application\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es-rES\\values-es-rES.xml",
             "map": [
                 {
-                    "source": "/home/stefano/.gradle/caches/transforms-2/files-2.1/53f3d5d8e049d569e75e05d177a87192/jetified-facebook-login-5.15.3/res/values-es-rES/values-es-rES.xml",
+                    "source": "C:\\Users\\Stefano\\.gradle\\caches\\transforms-2\\files-2.1\\a92fb773854cc4aecad29780434903d6\\jetified-facebook-login-5.15.3\\res\\values-es-rES\\values-es-rES.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
