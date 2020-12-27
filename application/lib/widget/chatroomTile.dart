@@ -51,12 +51,15 @@ class ChatRoomsTile extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 22,
                     fontFamily: 'OverpassRegular',
+<<<<<<< HEAD
                     fontWeight: FontWeight.w300)),
             Text("last message",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
                     fontFamily: 'OverpassRegular',
+=======
+>>>>>>> b928afc7ad003675ab9556b5b9f2441532137711
                     fontWeight: FontWeight.w300))
           ],
         ),
