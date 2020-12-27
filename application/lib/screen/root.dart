@@ -23,13 +23,14 @@ class _RootPageState extends State<RootPage> {
   }
 
   getLoggedInState() async {
-    await HelperFunctions.getUserLoggedInSharedPreference().then((value) {
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value) async {
       if (value == null) value = false;
       setState(() {
         userIsLoggedIn = value;
       });
       if (value) {
-        CoreLogic.instance.authenticationLogic.add(Login());
+        String email = await HelperFunctions.getUserEmailSharedPreference();
+        CoreLogic.instance.authenticationLogic.add(Login(email: email));
       }
     });
   }

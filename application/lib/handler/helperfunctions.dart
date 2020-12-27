@@ -1,3 +1,4 @@
+import 'package:barter/entity/chat.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunctions {
@@ -6,6 +7,7 @@ class HelperFunctions {
   static String sharedPreferenceUserLoggedInKey = "ISLOGGEDIN";
   static String sharedPreferenceUserNameKey = "USERNAMEKEY";
   static String sharedPreferenceUserEmailKey = "USEREMAILKEY";
+  static List<Chat> chatSupportVar = [];
 
   /// saving data to sharedpreference
   static Future<bool> saveUserLoggedInSharedPreference(

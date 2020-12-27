@@ -55,7 +55,7 @@ class _ChatState extends State<Chat> {
 
   @override
   void initState() {
-    DatabaseMethods().getChats(widget.chatRoomId).then((val) {
+    DatabaseMethods.getChats(widget.chatRoomId).then((val) {
       setState(() {
         chats = val;
       });
@@ -68,6 +68,7 @@ class _ChatState extends State<Chat> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        backgroundColor: mainTheme,
       ),
       body: Container(
         child: Stack(

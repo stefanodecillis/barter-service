@@ -13,9 +13,6 @@ class AuthenticationLogic
 
   @override
   AuthenticationState get initialState => AuthenticationState.initial();
-  String email;
-  String password;
-  String userName;
   AuthRepository _repository = new AuthRepository();
 
   @override
@@ -24,7 +21,7 @@ class AuthenticationLogic
     if (event is Login) {
       //print("Inside Login"+email+userName+password);
       QuerySnapshot userInfoSnapshot =
-          await DatabaseMethods().getUserInfo(email);
+          await DatabaseMethods().getUserInfo(event.email);
       print(userInfoSnapshot.documents[0].data["username"]);
       print("2x2");
       HelperFunctions.saveUserLoggedInSharedPreference(true);
@@ -52,9 +49,8 @@ class AuthenticationLogic
           HelperFunctions.saveUserLoggedInSharedPreference(true);
           HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
-          userName = userInfoSnapshot.documents[0].data["username"];
-          email = userInfoSnapshot.documents[0].data["email"];
-          password = "123";
+          //userName = userInfoSnapshot.documents[0].data["username"];
+          //email = userInfoSnapshot.documents[0].data["email"];
           HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
           print("TESTTT" + userInfoSnapshot.documents[0].data["username"]);
@@ -99,9 +95,9 @@ class AuthenticationLogic
       });
     } else if (event is Signup) {
       print("DUSTOOO");
-      email = event.email;
-      userName = event.username;
-      password = event.psw;
+      //email = event.email;
+      //userName = event.username;
+      //password = event.psw;
       print(event.email + event.psw + event.username);
       _repository
           .signUp(event.email, event.psw, event.username, event.context)

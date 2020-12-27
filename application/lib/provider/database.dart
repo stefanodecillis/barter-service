@@ -1,3 +1,5 @@
+import 'package:barter/event/chatEvent.dart';
+import 'package:barter/handler/coreLogic.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseMethods {
@@ -8,11 +10,12 @@ class DatabaseMethods {
   }
 
   getUserInfo(String email) async {
-    print("getUserInfo email"+email);
+    print("getUserInfo email" + email);
     print(Firestore.instance
         .collection("users")
         .where("email", isEqualTo: email)
-        .getDocuments().toString());
+        .getDocuments()
+        .toString());
     return Firestore.instance
         .collection("users")
         .where("email", isEqualTo: email)
@@ -24,7 +27,7 @@ class DatabaseMethods {
 
   searchByName(String searchField) {
     print("hellloooo");
-    String result="";
+    String result = "";
     Firestore.instance
         .collection("users")
         .where("username", isEqualTo: searchField)
@@ -52,7 +55,7 @@ class DatabaseMethods {
     });
   }
 
-  getChats(String chatRoomId) async{
+  static Future<Stream<QuerySnapshot>> getChats(String chatRoomId) async {
     return Firestore.instance
         .collection("chatRoom")
         .document(chatRoomId)
@@ -61,22 +64,23 @@ class DatabaseMethods {
         .snapshots();
   }
 
-
-  Future<void> addMessage(String chatRoomId, chatMessageData){
-
-    Firestore.instance.collection("chatRoom")
+  Future<void> addMessage(String chatRoomId, chatMessageData) {
+    Firestore.instance
+        .collection("chatRoom")
         .document(chatRoomId)
         .collection("chats")
-        .add(chatMessageData).catchError((e){
-          print(e.toString());
+        .add(chatMessageData)
+        .catchError((e) {
+      print(e.toString());
     });
+    CoreLogic.instance.chatLogic.add(FetchChat());
   }
 
-  getUserChats(String itIsMyName) async {
+  static Future<Stream<QuerySnapshot>> getUserChats(String uid) async {
     return await Firestore.instance
         .collection("chatRoom")
-        .where('users', arrayContains: itIsMyName)
-        .orderBy("chatDateTime" , descending: true)
+        .where('users', arrayContains: uid)
+        .orderBy("chatDateTime", descending: true)
         .snapshots();
   }
 }
