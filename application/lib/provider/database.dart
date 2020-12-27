@@ -76,7 +76,7 @@ class DatabaseMethods {
     return await Firestore.instance
         .collection("chatRoom")
         .where('users', arrayContains: itIsMyName)
+        .orderBy("chatDateTime" , descending: true)
         .snapshots();
   }
-
 }
