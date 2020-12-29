@@ -1,10 +1,7 @@
 import 'package:barter/constants.dart';
-import 'package:barter/entity/message.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:barter/handler/helperfunctions.dart';
-import 'package:barter/logic/chatLogic.dart';
 import 'package:barter/provider/database.dart';
-import 'package:barter/state/chatState.dart';
 import 'package:barter/widget/chatroomTile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

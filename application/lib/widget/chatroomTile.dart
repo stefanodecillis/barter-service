@@ -1,4 +1,3 @@
-import 'package:barter/entity/message.dart';
 import 'package:barter/provider/database.dart';
 import 'package:barter/screen/chat/chat.dart';
 import 'package:barter/screen/chat/chat.dart';
@@ -8,23 +7,21 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class ChatRoomsTile extends StatefulWidget {
-  ChatRoomsTile({this.userName, @required this.chatRoomId, this.lastMsg});
+  ChatRoomsTile({this.userName, @required this.chatRoomId});
   final String userName;
   final String chatRoomId;
-  final Message lastMsg;
 
   @override
-  _ChatRoomsTileState createState() => _ChatRoomsTileState(
-      userName: userName, chatRoomId: chatRoomId, lastMsg: lastMsg);
+  _ChatRoomsTileState createState() =>
+      _ChatRoomsTileState(userName: userName, chatRoomId: chatRoomId);
 }
 
 class _ChatRoomsTileState extends State<ChatRoomsTile> {
   final String userName;
   final String chatRoomId;
-  final Message lastMsg;
   Stream chat;
 
-  _ChatRoomsTileState({this.userName, @required this.chatRoomId, this.lastMsg});
+  _ChatRoomsTileState({this.userName, @required this.chatRoomId});
 
   getChat() async {
     DatabaseMethods.getChats(chatRoomId).then((value) {
@@ -52,8 +49,11 @@ class _ChatRoomsTileState extends State<ChatRoomsTile> {
                     )));
       },
       child: Container(
-        color: secondTheme,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        margin: EdgeInsets.only(left: 5, right: 5),
+        padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+        height: 90,
+        decoration: BoxDecoration(
+            color: secondTheme, borderRadius: BorderRadius.circular(20)),
         child: Row(
           children: [
             Container(
@@ -78,13 +78,20 @@ class _ChatRoomsTileState extends State<ChatRoomsTile> {
             Container(
               child: Column(
                 children: [
-                  Text(userName,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontFamily: 'OverpassRegular',
-                          fontWeight: FontWeight.w300)),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: 30,
+                    child: Text(userName,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontFamily: 'OverpassRegular',
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: 20,
@@ -103,7 +110,7 @@ class _ChatRoomsTileState extends State<ChatRoomsTile> {
                                   .data['message'],
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 15,
                                   fontFamily: 'OverpassRegular',
                                   fontWeight: FontWeight.w300));
                         }

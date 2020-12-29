@@ -1,4 +1,3 @@
-import 'package:barter/event/chatEvent.dart';
 import 'package:barter/handler/coreLogic.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -73,7 +72,6 @@ class DatabaseMethods {
         .catchError((e) {
       print(e.toString());
     });
-    CoreLogic.instance.chatLogic.add(FetchChat());
   }
 
   static Future<Stream<QuerySnapshot>> getUserChats(String uid) async {
