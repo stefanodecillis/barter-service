@@ -1,3 +1,4 @@
+import 'package:barter/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,14 @@ class MessageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          top: 8, bottom: 8, left: sendByMe ? 0 : 24, right: sendByMe ? 24 : 0),
+          // top: 8, bottom: 8, left: sendByMe ? 0 : 24, right: sendByMe ? 24 : 0),
+          top: 8,
+          bottom: 8,
+          left: sendByMe ? 0 : 24,
+          right: sendByMe ? 24 : 0),
       alignment: sendByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin:
-            sendByMe ? EdgeInsets.only(left: 30) : EdgeInsets.only(right: 30),
+        margin: EdgeInsets.only(right: 10),
         padding: EdgeInsets.only(top: 17, bottom: 17, left: 20, right: 20),
         decoration: BoxDecoration(
             borderRadius: sendByMe
@@ -29,8 +33,8 @@ class MessageTile extends StatelessWidget {
                     bottomRight: Radius.circular(23)),
             gradient: LinearGradient(
               colors: sendByMe
-                  ? [const Color(0xff007EF4), const Color(0xff2A75BC)]
-                  : [const Color(0x1AFFFFFF), const Color(0x1AFFFFFF)],
+                  ? [secondTheme, secondTheme]
+                  : [mainTheme, mainTheme],
             )),
         child: Text(message,
             textAlign: TextAlign.start,
@@ -38,7 +42,7 @@ class MessageTile extends StatelessWidget {
                 color: Colors.white,
                 fontSize: 16,
                 fontFamily: 'OverpassRegular',
-                fontWeight: FontWeight.w300)),
+                fontWeight: FontWeight.w400)),
       ),
     );
   }

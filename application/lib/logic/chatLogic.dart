@@ -17,6 +17,7 @@ class ChatLogic extends Bloc<ChatEvent, ChatState> {
   @override
   Stream<ChatState> mapEventToState(ChatEvent event) async* {
     if (event is FetchChat) {
+      return;
       ChatState ss = generateState(state);
       List<Chat> chats = [];
       String uid = await HelperFunctions.getUserNameSharedPreference();

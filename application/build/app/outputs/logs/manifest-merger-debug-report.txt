@@ -196,7 +196,7 @@ MERGED from [com.android.installreferrer:installreferrer:1.0] C:\Users\Stefano\.
 	android:supportsRtl
 		ADDED from [com.facebook.android:facebook-android-sdk:5.15.3] C:\Users\Stefano\.gradle\caches\transforms-2\files-2.1\d6163631f0be294b846533c7c67751f1\facebook-android-sdk-5.15.3\AndroidManifest.xml:28:18-44
 	android:label
-		ADDED from C:\Users\Stefano\projects\barter-service\application\android\app\src\main\AndroidManifest.xml:12:9-31
+		ADDED from C:\Users\Stefano\projects\barter-service\application\android\app\src\main\AndroidManifest.xml:12:9-32
 	android:icon
 		ADDED from C:\Users\Stefano\projects\barter-service\application\android\app\src\main\AndroidManifest.xml:13:9-43
 	android:name
