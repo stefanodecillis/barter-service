@@ -20,7 +20,8 @@ class Signin extends AuthenticationEvent {
   final String email;
   final String psw;
   final BuildContext context;
-  Signin({this.email, this.psw, this.context});
+  final VoidCallback onSignin;
+  Signin({this.email, this.psw, this.context, this.onSignin});
 }
 
 class Logout extends AuthenticationEvent {}

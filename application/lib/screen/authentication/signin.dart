@@ -53,7 +53,8 @@ class _SignInState extends State<SignIn> {
               await DatabaseMethods().getUserInfo(emailEditingController.text);
 
           HelperFunctions.saveUserLoggedInSharedPreference(true);
-          HelperFunctions.myName=(userInfoSnapshot.documents[0].data["username"]);
+          HelperFunctions.myName =
+              (userInfoSnapshot.documents[0].data["username"]);
           debugPrint("1");
           debugPrint(HelperFunctions.myName);
           debugPrint(userInfoSnapshot.documents[0].data["username"]);
@@ -88,7 +89,6 @@ class _SignInState extends State<SignIn> {
         SizedBox(height: 20.0),
         Text(
           'Sign in with',
-          //style: kLabelStyle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w400,
@@ -121,7 +121,6 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +214,11 @@ class _SignInState extends State<SignIn> {
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: RaisedButton(
-                        onPressed: () => CoreLogic.instance.authenticationLogic.add(Signin(email:email.trim(), psw:password.trim(), context:context)),
+                        onPressed: () => CoreLogic.instance.authenticationLogic
+                            .add(Signin(
+                                email: email.trim(),
+                                psw: password.trim(),
+                                context: context)),
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),

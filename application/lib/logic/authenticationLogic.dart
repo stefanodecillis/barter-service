@@ -46,17 +46,19 @@ class AuthenticationLogic
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(event.email);
 
-          HelperFunctions.saveUserLoggedInSharedPreference(true);
-          HelperFunctions.saveUserNameSharedPreference(
+          await HelperFunctions.saveUserLoggedInSharedPreference(true);
+          await HelperFunctions.saveUserNameSharedPreference(
               userInfoSnapshot.documents[0].data["username"]);
           //userName = userInfoSnapshot.documents[0].data["username"];
           //email = userInfoSnapshot.documents[0].data["email"];
-          HelperFunctions.saveUserEmailSharedPreference(
+          await HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
           print("TESTTT" + userInfoSnapshot.documents[0].data["username"]);
           HelperFunctions.myName =
               userInfoSnapshot.documents[0].data["username"];
-          this.add(Login());
+          this.add(Login(email: userInfoSnapshot.documents[0].data["email"]));
+          AuthenticationState ss = generateState(state);
+          ss.isLoggedIn = true;
         }
       });
     } else if (event is FacebookSignIn) {
