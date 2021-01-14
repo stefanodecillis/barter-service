@@ -149,13 +149,10 @@ class AuthenticationProvider {
       if (result != null) {
         Map<String, String> userDataMap = {"username": userName, "email": email};
         databaseMethods.addUserInfo(userDataMap);
-debugPrint("Insideauthentications"+userName);
         HelperFunctions.saveUserLoggedInSharedPreference(true);
         HelperFunctions.saveUserNameSharedPreference(userName);
         HelperFunctions.saveUserEmailSharedPreference(email);
-        debugPrint("Insideauthentications1"+userName);
         HelperFunctions.myName=userName;
-        debugPrint("Insideauthentications2"+userName);
       }
 
       return Future.value(user);
@@ -240,7 +237,6 @@ debugPrint("Insideauthentications"+userName);
   }
 
   Future signOutUser() async {
-    print("signOutUser");
     FirebaseUser user = await auth.currentUser();
     /*print(user.providerData[0].providerId);
     if (user.providerData[0].providerId == 'google.com') {

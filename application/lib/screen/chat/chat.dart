@@ -26,7 +26,6 @@ class _ChatState extends State<Chat> {
             ? ListView.builder(
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) {
-                  print(snapshot.data.documents[index].data["message"]);
                   return MessageTile(
                     message: snapshot.data.documents[index].data["message"],
                     sendByMe: HelperFunctions.myName ==

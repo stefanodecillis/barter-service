@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: SingleChildScrollView(
             child: Column(children: [
-          searching ? PostFilters() : SizedBox(),
+          false ? PostFilters() : SizedBox(),
           BlocBuilder<PostLogic, PostState>(
             cubit: logic,
             builder: (context, state) {

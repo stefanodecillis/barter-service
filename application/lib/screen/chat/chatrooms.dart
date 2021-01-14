@@ -26,8 +26,6 @@ class _ChatRoomState extends State<ChatRoom> {
     DatabaseMethods.getUserChats(HelperFunctions.myName).then((snapshots) {
       setState(() {
         chatRooms = snapshots;
-        print(
-            "we got the data + ${chatRooms.toString()} this is name  ${HelperFunctions.myName}");
       });
     });
   }
@@ -90,9 +88,6 @@ class _ChatRoomState extends State<ChatRoom> {
                 itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  debugPrint("2...." +
-                      snapshot.data.documents[index].data['chatRoomId']
-                          .toString());
                   return Container(
                     padding: EdgeInsets.only(top: 2, bottom: 2),
                     child: ChatRoomsTile(

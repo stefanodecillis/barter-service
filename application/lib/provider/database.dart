@@ -9,12 +9,6 @@ class DatabaseMethods {
   }
 
   getUserInfo(String email) async {
-    print("getUserInfo email" + email);
-    print(Firestore.instance
-        .collection("users")
-        .where("email", isEqualTo: email)
-        .getDocuments()
-        .toString());
     return Firestore.instance
         .collection("users")
         .where("email", isEqualTo: email)
@@ -25,7 +19,6 @@ class DatabaseMethods {
   }
 
   searchByName(String searchField) {
-    print("hellloooo");
     String result = "";
     Firestore.instance
         .collection("users")
@@ -36,8 +29,6 @@ class DatabaseMethods {
     });
 
     //CollectionReference users = FirebaseFirestore.instance.collection('users')
-    print("hellloooowwwwwww");
-    print(result);
     return Firestore.instance
         .collection("users")
         .where("username", isEqualTo: searchField)

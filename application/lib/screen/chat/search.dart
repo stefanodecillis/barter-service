@@ -8,7 +8,6 @@ class Search extends StatefulWidget {
 
   String ITEMID;
   Search(String itemID){
-    debugPrint(itemID);
     ITEMID=itemID;
   }
 
@@ -20,7 +19,6 @@ class _SearchState extends State<Search> {
 
   _SearchState(String itemid){
     ITEMID=itemid;
-    debugPrint(itemid);
   }
 
   String ITEMID;
@@ -42,7 +40,7 @@ class _SearchState extends State<Search> {
       print(searchEditingController.text);
       await databaseMethods.searchByName(searchEditingController.text)
           .then((snapshot){
-            print("HEHEHEHEHEHE2");
+
 
         searchResultSnapshot = snapshot;
 
@@ -51,7 +49,7 @@ class _SearchState extends State<Search> {
         USERNAME=searchResultSnapshot.documents[0].data["username"];
         EMAIL=searchResultSnapshot.documents[0].data["email"];
         searchResultSnapshot.documents.forEach((f) => print('${f.data}'));
-            print("HEHEHEHEHEHE3");
+
 
 
         print("$searchResultSnapshot");
