@@ -31,108 +31,105 @@ class _ItemDetailScreen extends State<ItemDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: mainTheme,
-        actions: [
-          item.author != 'myself'
-              ? IconButton(
-                  icon: Icon(Icons.chat),
-                  onPressed: () => sendMessage(item.author,
-                      item.id.toString()), //Search(item.id.toString()),
-                )
-              : SizedBox()
-        ],
-      ),
-      backgroundColor: secondBg,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            item.file == null
-                ? Image.network(item.imgUrl)
-                : Image.file(item.file),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  item.title,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    return BlocBuilder<PostLogic, PostState>(
+        cubit: CoreLogic.instance.postLogic,
+        builder: (context, state) {
+          return Scaffold(
+              appBar: AppBar(
+                backgroundColor: mainTheme,
+                actions: [
+                  !item.insideList(state.userPosts)?
+                  IconButton(
+                    icon: Icon(Icons.chat),
+                    onPressed: () => sendMessage(item.author,
+                        item.id.toString()), //Search(item.id.toString()),
+                  ): SizedBox()
+
+                ],
+              ),
+              backgroundColor: secondBg,
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    item.file == null
+                        ? Image.network(item.imgUrl)
+                        : Image.file(item.file),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          item.title,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          item.description,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          item.tags.toString().replaceAll('[', "").replaceAll(']', ""),
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    )
+                  ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  item.description,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  item.tags.toString().replaceAll('[', "").replaceAll(']', ""),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: BlocBuilder<PostLogic, PostState>(
-          cubit: CoreLogic.instance.postLogic,
-          builder: (context, state) {
-            if (item.insideList(state.userPosts)) {
-              return FloatingActionButton(
+              floatingActionButton:
+              item.insideList(state.userPosts)?
+              FloatingActionButton(
                   onPressed: () {
                     debugPrint('delete');
                     CoreLogic.instance.postLogic
                         .add(DeletePost(post: this.item));
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.delete_forever));
-            }
-            return FloatingActionButton(
-                onPressed: () {
-                  debugPrint('love it');
-                  CoreLogic.instance.postLogic.add(LovePost(post: this.item));
-                },
-                child: !item.insideList(state.preferPosts)
-                    ? Icon(EvaIcons.heartOutline)
-                    : Icon(EvaIcons.heart));
-          }),
-    );
+                  child: Icon(Icons.delete_forever)):
+              FloatingActionButton(
+                  onPressed: () {
+                    debugPrint('love it');
+                    CoreLogic.instance.postLogic.add(LovePost(post: this.item));
+                  },
+                  child: !item.insideList(state.preferPosts)
+                      ? Icon(EvaIcons.heartOutline)
+                      : Icon(EvaIcons.heart))
+          );
+        });
   }
 
   sendMessage(String userName, String itemId) {
     DatabaseMethods databaseMethods = new DatabaseMethods();
-    debugPrint('love it2');
     List<String> users = [HelperFunctions.myName, userName];
-    debugPrint('love it3');
     debugPrint(HelperFunctions.myName);
     debugPrint(userName);
 
-    //todo not working for new chats. what if the chat does not exist? You need to create it
     String chatRoomId = getChatRoomId(HelperFunctions.myName, userName, itemId);
 
     Map<String, dynamic> chatRoom = {

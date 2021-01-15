@@ -22,8 +22,6 @@ class AuthenticationLogic
       //print("Inside Login"+email+userName+password);
       QuerySnapshot userInfoSnapshot =
           await DatabaseMethods().getUserInfo(event.email);
-      print(userInfoSnapshot.documents[0].data["username"]);
-      print("2x2");
       HelperFunctions.saveUserLoggedInSharedPreference(true);
       HelperFunctions.saveUserNameSharedPreference(
           userInfoSnapshot.documents[0].data["username"]);
@@ -35,13 +33,11 @@ class AuthenticationLogic
       ss.isLoggedIn = true;
       yield ss;
     } else if (event is Signin) {
-      print("Hello22");
-      print(event.email + event.psw);
+      
       _repository
           .signIn(event.email, event.psw, event.context)
           .then((value) async {
         if (value != null) {
-          print("Hello33");
 
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(event.email);
@@ -53,7 +49,6 @@ class AuthenticationLogic
           //email = userInfoSnapshot.documents[0].data["email"];
           await HelperFunctions.saveUserEmailSharedPreference(
               userInfoSnapshot.documents[0].data["email"]);
-          print("TESTTT" + userInfoSnapshot.documents[0].data["username"]);
           HelperFunctions.myName =
               userInfoSnapshot.documents[0].data["username"];
           this.add(Login(email: userInfoSnapshot.documents[0].data["email"]));
@@ -79,7 +74,6 @@ class AuthenticationLogic
       });
     } else if (event is GoogleSignIn) {
       _repository.googleSignIn().then((value) async {
-        print("Hello");
         if (value != null) {
           QuerySnapshot userInfoSnapshot =
               await DatabaseMethods().getUserInfo(value);
@@ -96,7 +90,6 @@ class AuthenticationLogic
         }
       });
     } else if (event is Signup) {
-      print("DUSTOOO");
       //email = event.email;
       //userName = event.username;
       //password = event.psw;
@@ -104,7 +97,6 @@ class AuthenticationLogic
       _repository
           .signUp(event.email, event.psw, event.username, event.context)
           .then((value) {
-        print("DUSTOOO3");
         if (value != null) {
           this.add(Login());
           Navigator.pop(event.context);

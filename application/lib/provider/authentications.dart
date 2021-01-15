@@ -243,7 +243,7 @@ class AuthenticationProvider {
       await gooleSignIn.disconnect();
     }*/
     await auth.signOut();
-    HelperFunctions.clearData();
+    await HelperFunctions.clearData();
     HelperFunctions.myName="";
     return Future.value(true);
   }

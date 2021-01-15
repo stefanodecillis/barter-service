@@ -52,7 +52,6 @@ class _SignUpState extends State<SignUp> {
       await authService.signUpWithEmailAndPassword(emailEditingController.text,
           passwordEditingController.text).then((result){
             if(result != null){
-              print("TESTTTTT"+userName);
               Map<String,String> userDataMap = {
                 "username" : usernameEditingController.text,
                 "email" : emailEditingController.text
@@ -84,7 +83,6 @@ class _SignUpState extends State<SignUp> {
         ),
         onChanged: (val) {
           userName= val;
-          print("TESTTTTT"+userName);
         },
         decoration: InputDecoration(
           border: InputBorder.none,
